@@ -1,6 +1,9 @@
-The fork of [Misskey](https://github.com/syuilo/misskey)
+The fork of [Meisskey](https://github.com/mei23/misskey)
 
-![](https://github.com/mei23/misskey/workflows/Node.js%20CI/badge.svg)
+## 改造したところ
 
-簡単なセットアップ方法はこの辺  
-https://github.com/mei23/memo/blob/master/misskey/Setup-Ubuntu1804-Quick.md
+https://github.com/leies-202/misskey/blob/mei-m544/src/client/style.styl
+
+https://github.com/Leies-202/misskey/blob/mei-m544/src/client/themes/promo.json5
+
+以上

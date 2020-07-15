@@ -1,23 +1,15 @@
 {
-	id: 'promo',
-	revision: 4,
+        id: 'promo',
 
-	name: 'エレガントなお嬢様',
-	author: 'めいめい',
-	desc: 'エレガントなお嬢様のためのテーマなのだわ',
+        name: 'スパイシーな音街',
+        author: 'lei202',
+        desc: '音楽の街にスパイスを',
 
-	base: 'dark',
+        base: 'dark',
 
-	vars: {
-		primary: 'rgb(24, 192, 24)',
-		secondary: 'rgb(128, 0, 0)',
-		text: 'rgb(255, 251, 185)',
-	},
-
-	props: {
-		announcementsTitle: '#e3e5e8',
-		renoteGradient: '#b72ddc',
-		noteText: '#ffe0e0',
-		noteHeaderName: '#ffe0e0',
-	},
+        vars: {
+                primary: 'rgb(48, 70, 230)',
+                secondary: 'rgb(40, 44, 55)',
+                text: 'rgb(214, 225, 35)',
+        },
 }
