@@ -10,4 +10,8 @@ https://github.com/leies-202/misskey/blob/mei-m544/src/client/style.styl
 
 https://github.com/Leies-202/misskey/blob/mei-m544/src/client/themes/promo.json5
 
+### 3.アニメーション停止はデフォルト無効(めいすきーではデフォルト有効だった)
+
+https://github.com/Leies-202/misskey/commit/ff06c10068faddf1ae6590b2cd10892ef3787831
+
 以上
