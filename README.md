@@ -14,4 +14,8 @@ https://github.com/Leies-202/misskey/blob/mei-m544/src/client/themes/promo.json5
 
 https://github.com/Leies-202/misskey/commit/ff06c10068faddf1ae6590b2cd10892ef3787831
 
+### 4.見よう見まねでシェアページのhashtags変数対応
+
+https://github.com/Leies-202/misskey/commit/f1f6177bbf35f76f0cc5a42ccb1a8aaf37ca31fb
+
 以上
