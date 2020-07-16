@@ -23,6 +23,7 @@ export default Vue.extend({
 			text: new URLSearchParams(location.search).get('text'),
 			url: new URLSearchParams(location.search).get('url'),
 			title: new URLSearchParams(location.search).get('title'),
+			hashtags: new URLSearchParams(location.search).get('hashtags'),
 		};
 	},
 	computed: {
@@ -32,6 +33,7 @@ export default Vue.extend({
 			if (this.title && !this.url) t += `【${this.title}】\n`;
 			if (this.text) t += `${this.text}\n`;
 			if (!this.title && this.url) t += `${this.url}`;
+			if (!this.hashtags && this.hashtags) t += `#${this.hashtags}`;
 			return t.trim();
 		}
 	},
