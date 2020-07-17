@@ -32,7 +32,7 @@ export default Vue.extend({
 			if (this.title && this.url) t += `【[${this.title}](${this.url})】\n`;
 			if (this.title && !this.url) t += `【${this.title}】\n`;
 			if (this.text) t += `${this.text}\n`;
-			if (!this.title && this.url) t += `${this.url}`;
+			if (!this.title && this.url) t += `${this.url}\n`;
 			if (!this.hashtags && this.hashtags) t += `#${this.hashtags}`;
 			return t.trim();
 		}
