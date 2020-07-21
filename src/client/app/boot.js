@@ -117,7 +117,7 @@
 
 	if (tickerMode) {
 		const link = document.createElement('link');
-		const type = tickerMode == 40 ? 0 : 1;
+		const type = tickerMode == 40 ? 40 : 41;
 		link.href = `https://miy.pw/css/${type}.css`;
 		link.type = 'text/css';
 		link.rel = 'stylesheet';
