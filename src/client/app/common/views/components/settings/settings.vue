@@ -47,6 +47,15 @@
 				<ui-switch v-model="disableAnimatedMfm">{{ $t('@._settings.disable-animated-mfm') }}</ui-switch>
 				<ui-switch v-model="disableShowingAnimatedImages">{{ $t('@._settings.disable-showing-animated-images') }}</ui-switch>
 			</section>
+			<section>
+				<header>Instance Ticker</header>
+				<p><small>Powered by <a href="https://miy.pw/">#InstanceTicker</a></small></p>
+				<ui-select v-model="tickerMode">
+					<option value="0">{{ $t('@._settings.instance-ticker-0') }}</option>
+					<option value="40">{{ $t('@._settings.instance-ticker-1') }}</option>
+					<option value="41">{{ $t('@._settings.instance-ticker-2') }}</option>
+				</ui-select>
+			</section>
 			<section v-if="$root.isMobile">
 				<header>{{ $t('@._settings.post-style') }}</header>
 				<ui-radio v-model="postStyle" value="standard">{{ $t('@._settings.post-style-standard') }}</ui-radio>
@@ -359,8 +368,14 @@ export default Vue.extend({
 			reactions: this.$store.state.settings.reactions.join(''),
 			latestVersion: undefined,
 			checkingForUpdate: false,
+			tickerMode: localStorage.getItem('tickerMode') || '0',
 			faSave, faEye, faUndoAlt, faRandom
 		};
+	},
+	watch: {
+		tickerMode(val) {
+			localStorage.setItem('tickerMode', val);
+		},
 	},
 	computed: {
 		isAdvanced(): boolean {
