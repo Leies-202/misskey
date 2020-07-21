@@ -52,7 +52,6 @@
 				<p><small>Powered by <a href="https://miy.pw/">#InstanceTicker</a></small></p>
 				<ui-select v-model="tickerMode">
 					<option value="0">{{ $t('@._settings.instance-ticker-0') }}</option>
-					<option value="40">{{ $t('@._settings.instance-ticker-1') }}</option>
 					<option value="41">{{ $t('@._settings.instance-ticker-2') }}</option>
 				</ui-select>
 			</section>
