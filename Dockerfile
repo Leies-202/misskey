@@ -1,26 +1,13 @@
-FROM node:12.18.3-alpine AS base
+FROM node:12.18.3 AS base
 
 ENV NODE_ENV=production
-
-RUN npm i -g npm@latest
 
 WORKDIR /misskey
 
 FROM base AS builder
 
-RUN apk add --no-cache \
-    autoconf \
-    automake \
-    file \
-    g++ \
-    gcc \
-    libc-dev \
-    libtool \
-    make \
-    nasm \
-    pkgconfig \
-    python \
-    zlib-dev
+RUN apt-get update
+RUN apt-get install -y build-essential
 
 COPY package.json yarn.lock ./
 RUN yarn install
@@ -29,11 +16,8 @@ RUN yarn build
 
 FROM base AS runner
 
-RUN apk add --no-cache \
-    ffmpeg \
-    tini
-RUN npm i -g web-push
-ENTRYPOINT ["/sbin/tini", "--"]
+RUN apt-get update
+RUN apt-get install -y ffmpeg mecab mecab-ipadic-utf8
 
 COPY --from=builder /misskey/node_modules ./node_modules
 COPY --from=builder /misskey/built ./built
