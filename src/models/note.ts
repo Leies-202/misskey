@@ -33,6 +33,7 @@ Note.createIndex({ score: -1 }, { sparse: true });
 Note.createIndex({ '_user.host': 1, replyId: 1, _id: -1 });
 Note.createIndex('mecabWords');
 Note.createIndex('trendWords');
+Note.createIndex({ 'userId': 1, _id: -1 });
 
 export default Note;
 
@@ -282,6 +283,7 @@ export const pack = async (
 	_note.repliesCount = _note.repliesCount || 0;
 	_note.reactionCounts = _note.reactionCounts ? decodeReactionCounts(_note.reactionCounts) : {};
 	_note.reactions = _note.reactionCounts;
+	_note.score = _note.score || 0;
 
 	// _note._userを消す前か、_note.userを解決した後でないとホストがわからない
 	if (_note._user) {
@@ -312,7 +314,6 @@ export const pack = async (
 	delete _note.prev;
 	delete _note.next;
 	delete _note.tagsLower;
-	delete _note.score;
 	delete _note.mecabWords;
 	delete _note.trendWords;
 	delete _note._user;

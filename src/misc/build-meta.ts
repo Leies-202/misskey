@@ -60,6 +60,8 @@ export async function buildMeta(instance: IMeta, detail = true) {
 		enableDiscordIntegration: instance.enableDiscordIntegration,
 
 		enableServiceWorker: instance.enableServiceWorker,
+
+		proxyAccountName: instance.proxyAccount || null,
 	};
 
 	if (detail) {
