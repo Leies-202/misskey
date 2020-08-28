@@ -72,7 +72,7 @@ const defaultDeviceSettings = Object.assign({
 	mobileNotificationPosition: 'bottom',
 	disableShowingAnimatedImages: false,
 	disableShowingInstanceInfo: true,
-	tickerMode: '1',
+	tickerMode: '41',
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
 	showPostPreview: true,
