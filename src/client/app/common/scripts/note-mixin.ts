@@ -143,10 +143,11 @@ export default (opts: Opts = {}) => ({
 				showFocus: viaKeyboard,
 				animation: !viaKeyboard
 			});
-			w.$once('chosen', reaction => {
+			w.$once('chosen', (reaction, disliked)  => {
 				this.$root.api('notes/reactions/create', {
 					noteId: this.appearNote.id,
-					reaction: reaction
+					reaction: reaction,
+					dislike: disliked,
 				}).then(() => {
 					w.close();
 				});
@@ -173,10 +174,7 @@ export default (opts: Opts = {}) => ({
 			this.$root.api('notes/favorites/create', {
 				noteId: this.appearNote.id
 			}).then(() => {
-				this.$root.dialog({
-					type: 'success',
-					splash: true
-				});
+				this.$notify(this.$t('@.favorited'));
 			});
 		},
 
