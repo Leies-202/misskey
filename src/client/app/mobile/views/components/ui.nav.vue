@@ -37,7 +37,7 @@
 						<li v-if="$store.getters.isSignedIn && ($store.state.i.isAdmin || $store.state.i.isModerator)"><a href="/admin"><i><fa icon="terminal" fixed-width/></i><span>{{ $t('admin') }}</span><i><fa icon="angle-right"/></i></a></li>
 					</ul>
 					<ul>
-						<li @click="toggleDeckMode"><p><i><fa :icon="$store.state.device.inDeckMode ? faHome : faColumns" fixed-width/></i><span>{{ $store.state.device.inDeckMode ? $t('@.home') : $t('@.deck') }}</span></p></li>
+						<li @click="toggleDeckMode"><p><i><fa :icon="$store.state.device.inDeckMode ? faHome : faColumns" fixed-width/></i><span>{{ $store.state.device.inDeckMode ? $t('@.undeck') : $t('@.deck') }}</span></p></li>
 						<li @click="toggleAppType">
 							<p><i><fa :icon="$root.isMobile ? faDesktop : faMobileAlt" fixed-width/></i>
 							<span>{{ $root.isMobile ? $t('@.desktop-mode') : $t('@.mobile-mode') }}</span></p>
@@ -133,7 +133,41 @@ export default Vue.extend({
 
 	methods: {
 		search() {
-			this.$router.push(`/search?q=`);
+			if (!this.$store.state.device.inDeckMode) {
+				this.$router.push(`/search?q=`);
+				return;
+			}
+
+			this.$root.dialog({
+				title: this.$t('search'),
+				input: true
+			}).then(async ({ canceled, result: query }) => {
+				if (canceled) return;
+
+				const q = query.trim();
+				if (q.startsWith('@')) {
+					this.$router.push(`/${q}`);
+				} else if (q.startsWith('#')) {
+					this.$router.push(`/tags/${encodeURIComponent(q.substr(1))}`);
+				} else if (q.startsWith('https://')) {
+					this.searching = true;
+					try {
+						const res = await this.$root.api('ap/show', {
+							uri: q
+						});
+						if (res.type == 'User') {
+							this.$router.push(`/@${res.object.username}@${res.object.host}`);
+						} else if (res.type == 'Note') {
+							this.$router.push(`/notes/${res.object.id}`);
+						}
+					} catch (e) {
+						// TODO
+					}
+					this.searching = false;
+				} else {
+					this.$router.push(`/search?q=${encodeURIComponent(q)}`);
+				}
+			});
 		},
 
 		onReversiInvited() {

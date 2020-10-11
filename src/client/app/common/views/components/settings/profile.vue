@@ -123,7 +123,7 @@
 				</ui-select>
 				<ui-horizon-group class="fit-bottom">
 					<ui-button @click="doExport()"><fa :icon="faDownload"/> {{ $t('export') }}</ui-button>
-					<ui-button @click="doImport()" :disabled="!['following', 'user-lists'].includes(exportTarget)"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
+					<ui-button @click="doImport()" :disabled="!['following', 'mute', 'blocking', 'user-lists'].includes(exportTarget)"><fa :icon="faUpload"/> {{ $t('import') }}</ui-button>
 				</ui-horizon-group>
 			</div>
 		</section>
@@ -249,12 +249,10 @@ export default Vue.extend({
 
 	methods: {
 		updateAvatar() {
-			if (this.$root.isMobile) return;
 			updateAvatar(this.$root)();
 		},
 
 		updateBanner() {
-			if (this.$root.isMobile) return;
 			updateBanner(this.$root)();
 		},
 
@@ -408,8 +406,20 @@ export default Vue.extend({
 
 		doImport() {
 			this.$chooseDriveFile().then(file => {
+				if (this.exportTarget === 'following' && file.name?.match(/mute|block/i)) {
+					throw new Error(`following but name is ${file.name}`);
+				}
+				if (this.exportTarget === 'mute' && file.name?.match(/follow/i)) {
+					throw new Error(`mute but name is ${file.name}`);
+				}
+				if (this.exportTarget === 'blocking' && file.name?.match(/follow/i)) {
+					throw new Error(`blocking but name is ${file.name}`);
+				}
+
 				this.$root.api(
 					this.exportTarget == 'following' ? 'i/import-following' :
+					this.exportTarget == 'mute' ? 'i/import-mute' :
+					this.exportTarget == 'blocking' ? 'i/import-blocking' :
 					this.exportTarget == 'user-lists' ? 'i/import-user-lists' :
 					null, {
 						fileId: file.id
@@ -424,6 +434,11 @@ export default Vue.extend({
 						text: e.message
 					});
 				});
+			}).catch((e: any) => {
+					this.$root.dialog({
+						type: 'error',
+						text: e.message
+					});
 			});
 		},
 
