@@ -83,6 +83,9 @@ drive:
 # Disable Posts (default: false)
 #disablePosts: true
 
+# Sign to ActivityPub GET request (default: false)
+#signToActivityPubGet: true
+
 # 最初に作成したユーザーを管理者にする (default: true)
 autoAdmin: true
 
@@ -108,8 +111,6 @@ themeColor: '#fb4e4e'
 #  mecabBin: mecab
 #  # mecab辞書 (オプション)
 #  mecabDic: /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd
-#  # リモートのmecabサーバーを使う場合は以下を指定
-#  #mecabServer: http://127.0.0.1:3062/
 
 # Elasticsearch
 #elasticsearch:
@@ -154,3 +155,6 @@ themeColor: '#fb4e4e'
 #proxySmtp: http://127.0.0.1:3128   # use HTTP/1.1 CONNECT
 #proxySmtp: socks4://127.0.0.1:1080 # use SOCKS4
 #proxySmtp: socks5://127.0.0.1:1080 # use SOCKS5
+
+# アップロードやリモート取得で処理できるファイルサイズの制限 (bytes)
+#maxFileSize: 262144000

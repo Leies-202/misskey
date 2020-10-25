@@ -26,7 +26,7 @@ export async function downloadUrl(url: string, path: string) {
 			'User-Agent': config.userAgent
 		},
 		timeout: 10 * 1000,
-		size: 1024 * 1024 * 1024,
+		size: config.maxFileSize || 262144000,
 		signal: controller.signal,
 		agent: u => u.protocol == 'http:' ? httpAgent : httpsAgent,
 	});
