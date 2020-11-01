@@ -109,21 +109,6 @@
 		head.appendChild(meta);
 	}
 
-	// Load InstanceTicker
-	// 0 or undefined => don't use InstanceTicker
-	// 1 => InstanceTicker Type-40
-	// 2 => InstanceTicker Type-41
-	let tickerMode = localStorage.getItem('tickerMode');
-
-	if (tickerMode) {
-		const link = document.createElement('link');
-		const type = tickerMode == 0 ? 0 : 41;
-		link.href = `https://miy.pw/css/${type}.css`;
-		link.type = 'text/css';
-		link.rel = 'stylesheet';
-		head.appendChild(link);
-	}
-
 	// Switch desktop or mobile version
 	if (app == null) {
 		app = isMobile ? 'mobile' : 'desktop';
