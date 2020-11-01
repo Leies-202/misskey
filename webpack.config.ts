@@ -147,8 +147,7 @@ module.exports = {
 			for (const [lang, locale] of Object.entries(locales))
 				fs.writeFileSync(`./built/client/assets/locales/${lang}.json`, JSON.stringify(locale), 'utf-8');
 		}),
-		new VueLoaderPlugin(),
-		new webpack.optimize.ModuleConcatenationPlugin()
+		new VueLoaderPlugin()
 	],
 	output: {
 		path: __dirname + '/built/client/assets',
@@ -161,6 +160,9 @@ module.exports = {
 		],
 		alias: {
 			'const.styl': __dirname + '/src/client/const.styl'
+		},
+		fallback: {
+			'crypto': false
 		}
 	},
 	resolveLoader: {
