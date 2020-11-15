@@ -1,5 +1,6 @@
 {
-        id: 'promo',
+	id: 'promo',
+	revision: 6,
 
         name: 'スパイシーな音街',
         author: 'lei202',
