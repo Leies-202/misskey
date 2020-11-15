@@ -366,6 +366,16 @@ export default Vue.extend({
 			default: null
 		}
 	},
+	data() {
+		return {
+			meta: null,
+			version,
+			reactions: this.$store.state.settings.reactions.join(''),
+			latestVersion: undefined,
+			checkingForUpdate: false,
+			faSave, faEye, faUndoAlt, faRandom
+		};
+	},
 	computed: {
 		isAdvanced(): boolean {
 			return this.$store.state.device.showAdvancedSettings;
