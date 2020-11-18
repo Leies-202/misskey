@@ -1,6 +1,6 @@
 import { parseFragment, DefaultTreeDocumentFragment } from 'parse5';
 import { URL } from 'url';
-import { urlRegexFull } from './prelude';
+import { urlRegexFull, urlRegex } from './prelude';
 
 export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 	if (html == null) return null;
@@ -59,7 +59,9 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 						: txt === href.value
 							? txt.match(urlRegexFull) ? txt
 							: `<${txt}>`
-						: `[${txt}](${href.value})`;
+						: (href.value.match(urlRegex) && !href.value.match(urlRegexFull))	// URLぽいがエンコードされてない
+							? `[${txt}](<${href.value}>)`
+							: `[${txt}](${href.value})`;
 				}
 				break;
 			}
@@ -148,14 +150,23 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 						appendChildren(node.childNodes);
 						text += `</flip>`;
 					}
-					text += `<${tag}>`;
-					appendChildren(node.childNodes);
-					text += `</${tag}>`;
 				} else if (name === 'rotate') {
 					const deg = node.attrs.find((x: any) => x.name == 'data-mfm-deg');
 					text += `<rotate ${deg.value}>`;
 					appendChildren(node.childNodes);
 					text += `</rotate>`;
+				} else if (name?.match(/^[a-z]+$/)) {
+					const args = [];
+					for (const attr of node.attrs) {
+						const m = attr.name.match(/^data-mfm-([a-z]+)$/);
+						if (!m) continue;
+						const key = m[1];
+						args.push(attr.name === attr.value ? key : `${key}=${attr.value}`);
+					}
+
+					text += args.length > 0 ? `[${name}.${args.join(',')} ` : `[${name} `;
+					appendChildren(node.childNodes);
+					text += ']';
 				} else {
 					appendChildren(node.childNodes);
 				}

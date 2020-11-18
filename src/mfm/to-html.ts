@@ -49,6 +49,18 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 			return el;
 		},
 
+		fn(token) {
+			const el = doc.createElement('span');
+			el.setAttribute('data-mfm', token.node.props.name);
+			for (const [key, value] of Object.entries(token.node.props.args || {})) {
+				if (!key.match(/^[a-z]+$/)) continue;
+				if (value === false) continue;
+				el.setAttribute(`data-mfm-${key}`, (value === true) ? `data-mfm-${key}` : value as string);
+			}
+			appendChildren(token.children, el);
+			return el;
+		},
+
 		motion(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'jelly');
@@ -59,8 +71,8 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		spin(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'spin');
-			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
-			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -68,9 +80,9 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		xspin(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'spin');
-			el.setAttribute('data-mfm-x', '1');
-			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
-			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
+			el.setAttribute('data-mfm-x', 'data-mfm-x');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -78,9 +90,9 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		yspin(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'spin');
-			el.setAttribute('data-mfm-y', '1');
-			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', '1');
-			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', '1');
+			el.setAttribute('data-mfm-y', 'data-mfm-y');
+			if (token.node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
+			if (token.node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(token.children, el);
 			return el;
 		},
@@ -102,7 +114,7 @@ export function toHtml(tokens: MfmForest, mentionedRemoteUsers: INote['mentioned
 		vflip(token) {
 			const el = doc.createElement('span');
 			el.setAttribute('data-mfm', 'flip');
-			el.setAttribute('data-mfm-v', '1');
+			el.setAttribute('data-mfm-v', 'data-mfm-v');
 			appendChildren(token.children, el);
 			return el;
 		},

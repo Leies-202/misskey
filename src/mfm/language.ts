@@ -3,7 +3,7 @@ import { createLeaf, createTree, urlRegex } from './prelude';
 import { Predicate } from '../prelude/relation';
 import parseAcct from '../misc/acct/parse';
 import { toUnicode } from 'punycode';
-import { emojiRegex } from '../misc/emoji-regex';
+import { emojiRegex, vendorEmojiRegex } from '../misc/emoji-regex';
 
 export function removeOrphanedBrackets(s: string): string {
 	const openBrackets = ['(', '「', '['];
@@ -41,8 +41,7 @@ export const mfmLanguage = P.createLanguage({
 	}),
 	title: r => r.startOfLine.then(P((input, i) => {
 		const text = input.substr(i);
-		// eslint-disable-next-line no-useless-escape
-		const match = text.match(/^([【\[]([^【\[】\]\n]+?)[】\]])(\n|$)/);
+		const match = text.match(/^([【]([^【】\n]+?)[】])(\n|$)/);
 		if (!match) return P.makeFailure(i, 'not a title');
 		const q = match[2].trim();
 		const contents = r.inline.atLeast(1).tryParse(q);
@@ -100,6 +99,7 @@ export const mfmLanguage = P.createLanguage({
 		r.url,
 		r.link,
 		r.emoji,
+		r.fn,
 		r.text
 	),
 	big: r => P.regexp(/^\*\*\*([\s\S]+?)\*\*\*/, 1).map(x => createTree('big', r.inline.atLeast(1).tryParse(x), {})),
@@ -259,8 +259,33 @@ export const mfmLanguage = P.createLanguage({
 	},
 	emoji: () => {
 		const name = P.regexp(/:(@?[\w-]+(?:@[\w.-]+)?):/i, 1).map(x => createLeaf('emoji', { name: x }));
+		const vcode = P.regexp(vendorEmojiRegex).map(x => createLeaf('emoji', { emoji: x, vendor: true }));
 		const code = P.regexp(emojiRegex).map(x => createLeaf('emoji', { emoji: x }));
-		return P.alt(name, code);
+		return P.alt(name, vcode, code);
+	},
+	fn: r => {
+		return P.seqObj(
+			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
+		).map((x: any) => {
+			let name = x.fn;
+			const args = {};
+			const separator = x.fn.indexOf('.');
+			if (separator > -1) {
+				name = x.fn.substr(0, separator);
+				for (const arg of x.fn.substr(separator + 1).split(',')) {
+					const kv = arg.split('=');
+					if (kv.length === 1) {
+						args[kv[0]] = true;
+					} else {
+						args[kv[0]] = kv[1];
+					}
+				}
+			}
+			return createTree('fn', r.inline.atLeast(1).tryParse(x.text), {
+				name,
+				args
+			});
+		});
 	},
 	text: () => P.any.map(x => createLeaf('text', { text: x }))
 });
