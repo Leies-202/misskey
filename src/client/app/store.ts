@@ -77,6 +77,7 @@ const defaultDeviceSettings = Object.assign({
 	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
 	roomGraphicsQuality: 'medium',
+	hasDisconnectedAction: 'notify',
 	roomUseOrthographicCamera: true,
 	activeEmojiCategoryName: undefined,
 	recentEmojis: [],
@@ -85,6 +86,7 @@ const defaultDeviceSettings = Object.assign({
 	showDislikeInPicker: false,
 	enableRandomReactionPicker: false,
 	appType: 'auto',
+	emojiFlavor: 'default',
 }, mods.defaultDeviceSettings || {});
 
 export default (os: MiOS) => new Vuex.Store({

@@ -91,6 +91,7 @@ common:
   edit: 'Edit'
   favorites: "Favorites"
   noteReactions: "Reacted notes"
+  poll_finished: "Poll finished"
   permissions:
     "read:account": "View your account information"
     "write:account": "Edit your account information"
@@ -235,6 +236,10 @@ common:
     visibilityColoring-none: "None"
     visibilityColoring-bg: Background"
     visibilityColoring-left: "Left"
+    emojiFlavor: "Emoji flavor"
+    emojiFlavor-default: "Default (Twitter)"
+    emojiFlavor-google: "Google"
+    emojiFlavor-apple: "Apple"
     this-setting-is-this-device-only: "Only for this device"
     deck-column-align: "Deck column alignment"
     deck-column-align-center: "Center"
@@ -300,6 +305,11 @@ common:
     showDislikeInPicker: "Show Dislike"
     enableRandomReactionPicker: "Randomly set for each picker display"
     room: "Room"
+    hasDisconnectedAction: "When past disconnected from the server"
+    _hasDisconnectedAction:
+      reload: "Reload automatically"
+      notify: "Notification only"
+      nothing: "Do nothing"
     _room:
       graphicsQuality: "Graphics Quality"
       _graphicsQuality:
@@ -653,6 +663,7 @@ common/views/components/reaction-picker.vue:
   choose-reaction: "Send a reaction"
 common/views/components/emoji-picker.vue:
   pinned: "Keep picker open"
+  search: "Search Emoji"
   recent-emoji: "Recent Emoji"
   custom-emoji: "Custom Emoji"
   remote-emoji: "Remote Custom Emoji"
@@ -721,6 +732,7 @@ common/views/components/notification-settings.vue:
   quote: "Quote"
   reaction: "Reaction"
   poll_vote: "Vote"
+  poll_finished: "Poll finished"
   highlight: "Highlight"
   mark-as-read-all-notifications: "Mark all notifications as read"
   mark-as-read-all-unread-notes: "Mark all posts as read"

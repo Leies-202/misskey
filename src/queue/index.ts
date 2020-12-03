@@ -62,7 +62,7 @@ export type InboxRequestData = {
 	ip?: string;
 };
 
-export type DbJobData = DbUserJobData | DbUserImportJobData | DeleteNoteJobData;
+export type DbJobData = DbUserJobData | DbUserImportJobData | DeleteNoteJobData | NotifyPollFinishedData;
 
 export type DbUserJobData = {
 	user: ILocalUser;
@@ -76,6 +76,11 @@ export type DbUserImportJobData = {
 export type DeleteNoteJobData = {
 	noteId: ObjectID;
 };
+
+export type NotifyPollFinishedData = {
+	userId: string;	// ObjectIDを入れてもstringでシリアライズされるだけ
+	noteId: string;
+}
 //#endregion
 
 export const deliverQueue = initializeQueue<DeliverJobData>('deliver', config.deliverJobPerSec || 128);
@@ -194,6 +199,20 @@ export function createDeleteNoteJob(note: INote, delay: number) {
 	});
 }
 
+export function createNotifyPollFinishedJob(note: INote, user: ILocalUser, expiresAt: Date) {
+	let delay = expiresAt.getTime() - Date.now() + 2000;
+	if (delay < 0) delay = 2000;
+
+	return dbQueue.add('notifyPollFinished', {
+		noteId: `${note._id}`,
+		userId: `${user._id}`
+	}, {
+		delay,
+		removeOnComplete: true,
+		removeOnFail: true
+	});
+}
+
 export function createExportNotesJob(user: ILocalUser) {
 	return dbQueue.add('exportNotes', {
 		user: user
@@ -285,14 +304,25 @@ export default function() {
 	processDb(dbQueue);
 }
 
-export function destroy() {
-	deliverQueue.once('cleaned', (jobs, status) => {
-		deliverLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
-	});
-	deliverQueue.clean(0, 'delayed');
+export function destroy(domain?: string) {
+	if (domain == null || domain === 'deliver') {
+		deliverQueue.once('cleaned', (jobs, status) => {
+			deliverLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		deliverQueue.clean(0, 'delayed');
+	}
 
-	inboxQueue.once('cleaned', (jobs, status) => {
-		inboxLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
-	});
-	inboxQueue.clean(0, 'delayed');
+	if (domain == null || domain === 'inbox') {
+		inboxQueue.once('cleaned', (jobs, status) => {
+			inboxLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		inboxQueue.clean(0, 'delayed');
+	}
+
+	if (domain === 'db') {
+		dbQueue.once('cleaned', (jobs, status) => {
+			dbLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
+		});
+		dbQueue.clean(0, 'delayed');
+	}
 }
