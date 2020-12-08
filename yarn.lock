@@ -621,10 +621,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-8.0.4.tgz#b840c2dce46bacf286e237bfb59a29e843399148"
   integrity sha512-M4BwiTJjHmLq6kjON7ZoI2JMlBvpY3BYSdiP6s/qCT3jb1s9/DeJF0JELpAxiVSIxXDzfNKe+r7yedMIoLbknQ==
 
-"@types/mongodb@3.5.34":
-  version "3.5.34"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.34.tgz#eaa04b9a85906129fb9aab2eb63079edcf802a98"
-  integrity sha512-73iy3+MiH+wxSM+hVA5jcW9ZTUaor2WKvM7hW+htOSgVb7E6/JBHOWaxj7rL1/vaxEBziKRr/VPecy3YAKqLuQ==
+"@types/mongodb@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.0.tgz#7b8f7104a50b39d155f363d9572b0e51bcdaeae8"
+  integrity sha512-5PGiTXS/tvvllyyD+LJt3bVyJixrY/ZIIJwsINnZorvJsN6gki4NH7Fhcep4MZF8HNCKNv2oWguysocS1jt9dw==
   dependencies:
     "@types/bson" "*"
     "@types/node" "*"
@@ -1576,10 +1576,10 @@ autwh@0.1.0:
   dependencies:
     oauth "0.9.15"
 
-aws-sdk@2.800.0:
-  version "2.800.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.800.0.tgz#634d4a8982a4ce1e2e77252c36d81180d05c5d9b"
-  integrity sha512-1vxT8h2iFFaxfn+onMIdL/L+OcIG6G4BUzRt4wuvQzwbKArRy0fUN2d6E7aoM74wl8VlNIMTxBLCqxDnfVeVxQ==
+aws-sdk@2.803.0:
+  version "2.803.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.803.0.tgz#054b850ec8ceb3b6ccb18d2a4cc6139ef3fbb7ef"
+  integrity sha512-rcjwbslKEtoOcxeskwaF6lVUgOxnEqVIeufzO+W8gnAzEaUamunqCAFHsqCFldF5efkHISCDbTKLhMHcEZ6yyg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2595,6 +2595,11 @@ crc-32@1.2.0:
   dependencies:
     exit-on-epipe "~1.0.1"
     printj "~1.1.0"
+
+create-require@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
+  integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
 cron-parser@^2.13.0:
   version "2.13.0"
@@ -8327,15 +8332,7 @@ source-map-resolve@^0.6.0:
     atob "^2.1.2"
     decode-uri-component "^0.2.0"
 
-source-map-support@^0.5.17:
-  version "0.5.17"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.17.tgz#29fe1b3c98b9dbd5064ada89052ee8ff070cb46c"
-  integrity sha512-bwdKOBZ5L0gFRh4KOxNap/J/MpvX9Yxsq9lFDx65s3o7F/NiHy7JRaGIS8MwW6tZPAq9UXE207Il0cfcb5yu/Q==
-  dependencies:
-    buffer-from "^1.0.0"
-    source-map "^0.6.0"
-
-source-map-support@~0.5.19:
+source-map-support@^0.5.17, source-map-support@~0.5.19:
   version "0.5.19"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
@@ -8655,10 +8652,10 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylus-loader@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-4.3.0.tgz#d4bab5a4d957f4b1f567be108185ff23be216ad4"
-  integrity sha512-S6j5Onp4AJJIXZomHYknFEnV6/4zhPoEKxMPu0iExPgJLlGO7CeBGu+xpYCup1hiZmDBnC3BKRswADKN9goLfw==
+stylus-loader@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-4.3.1.tgz#8b4e749294d9fe0729c2e5e1f04cbf87e1c941aa"
+  integrity sha512-apDYJEM5ZpOAWbWInWcsbtI8gHNr/XYVcSY/tWqOUPt7M5tqhtwXVsAkgyiVjhuvw2Yrjq474a9H+g4d047Ebw==
   dependencies:
     fast-glob "^3.2.4"
     klona "^2.0.4"
@@ -8807,10 +8804,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-systeminformation@*, systeminformation@4.30.10:
-  version "4.30.10"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.30.10.tgz#7fa94b3da5247a64d070b2b4100c0dbc18e20858"
-  integrity sha512-BndDV7hjRomUGkHK6MO661KUUWcDRbr5SlepDvREidYnR2QJIyHln0iSysH9GPOT7YJgwtswdyg/up/ZFYxHrQ==
+systeminformation@*, systeminformation@4.30.11:
+  version "4.30.11"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.30.11.tgz#ad0515007190dfec6bef22bc8aa1cbad7623821d"
+  integrity sha512-dR2OJMvyBeF+VZ36851O7oQEUFdNtux3xFI+xAFbWg5J/mh5lQOBiceHTkYOyvGf++mMIKgpeAmYnKy+cyWIdw==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
@@ -9123,12 +9120,13 @@ ts-loader@8.0.11:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
-ts-node@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.0.0.tgz#e7699d2a110cc8c0d3b831715e417688683460b3"
-  integrity sha512-/TqB4SnererCDR/vb4S/QvSZvzQMJN8daAslg7MeaiHvD8rDZsSfXmNeNumyZZzMned72Xoq/isQljYSt8Ynfg==
+ts-node@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.0.tgz#95eae4c6d0f94f2545884078e1eb1b14d2155639"
+  integrity sha512-0yqcL4sgruCvM+w64LiAfNJo6+lHfCYc5Ajj4yiLNkJ9oZ2HWaa+Kso7htYOOxVQ7+csAjdUjffOe9PIqC4pMg==
   dependencies:
     arg "^4.1.0"
+    create-require "^1.1.0"
     diff "^4.0.1"
     make-error "^1.1.1"
     source-map-support "^0.5.17"
