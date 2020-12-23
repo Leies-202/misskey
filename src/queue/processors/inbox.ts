@@ -5,7 +5,6 @@ import perform from '../../remote/activitypub/perform';
 import { resolvePerson } from '../../remote/activitypub/models/person';
 import { toUnicode } from 'punycode';
 import { URL } from 'url';
-import { publishApLogStream } from '../../services/stream';
 import Logger from '../../services/logger';
 import { registerOrFetchInstanceDoc } from '../../services/register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
@@ -13,7 +12,7 @@ import instanceChart from '../../services/chart/instance';
 import { getApId } from '../../remote/activitypub/type';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
 import { isBlockedHost } from '../../misc/instance-info';
-import { InboxJobData } from '..';
+import { InboxJobData } from '../type';
 import DbResolver from '../../remote/activitypub/db-resolver';
 import { inspect } from 'util';
 import { extractApHost } from '../../misc/convert-host';
@@ -128,14 +127,6 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			return `skip: signerHost(${signerHost}) !== activity.id host(${activityIdHost}`;
 		}
 	}
-
-	//#region Log/stats
-	publishApLogStream({
-		direction: 'in',
-		activity: activity.type,
-		host: user.host,
-		actor: user.username
-	});
 
 	// Update stats
 	registerOrFetchInstanceDoc(host).then(i => {
