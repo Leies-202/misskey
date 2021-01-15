@@ -1,8 +1,8 @@
 {
 	"name": "misskey",
-	"author": "syuilo <syuilotan@yahoo.co.jp>",
-	"version": "10.102.392-m544",
-	"codename": "nighthike",
+	"author": "mei23 <m@m544.net>",
+	"version": "10.102.395-m544",
+	"codename": "m544",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mei23/misskey.git"
@@ -30,7 +30,7 @@
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "1.2.34",
-		"@fortawesome/free-brands-svg-icons": "5.15.1",
+		"@fortawesome/free-brands-svg-icons": "5.15.2",
 		"@fortawesome/free-regular-svg-icons": "5.15.2",
 		"@fortawesome/free-solid-svg-icons": "5.15.2",
 		"@fortawesome/vue-fontawesome": "2.0.2",
@@ -225,7 +225,7 @@
 		"vuex": "3.6.0",
 		"vuex-persistedstate": "3.2.0",
 		"web-push": "3.4.4",
-		"webpack": "5.13.0",
+		"webpack": "5.14.0",
 		"webpack-cli": "4.3.1",
 		"websocket": "1.0.33",
 		"ws": "7.4.2",

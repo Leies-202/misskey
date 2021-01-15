@@ -74,6 +74,7 @@ const defaultDeviceSettings = Object.assign({
 	mobileNotificationPosition: 'bottom',
 	disableShowingAnimatedImages: false,
 	disableShowingInstanceInfo: false,
+	enableKeyboardShortcutInNote: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
 	showPostPreview: true,
