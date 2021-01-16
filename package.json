@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.395-m544",
+	"version": "10.102.396-m544",
 	"codename": "m544-spicy",
 	"repository": {
 		"type": "git",
@@ -65,8 +65,8 @@
 		"@types/lodash": "4.14.167",
 		"@types/mocha": "8.2.0",
 		"@types/mongodb": "3.6.3",
-		"@types/node": "14.14.20",
-		"@types/node-fetch": "2.5.7",
+		"@types/node": "14.14.21",
+		"@types/node-fetch": "2.5.8",
 		"@types/nodemailer": "6.4.0",
 		"@types/nprogress": "0.2.0",
 		"@types/oauth": "0.9.1",
@@ -97,7 +97,7 @@
 		"autobind-decorator": "2.4.0",
 		"autosize": "4.0.2",
 		"autwh": "0.1.0",
-		"aws-sdk": "2.827.0",
+		"aws-sdk": "2.828.0",
 		"bcryptjs": "2.4.3",
 		"bootstrap-vue": "2.21.2",
 		"browser-image-resizer": "2.1.3",
