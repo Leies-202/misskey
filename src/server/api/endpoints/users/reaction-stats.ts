@@ -1,14 +1,23 @@
 import $ from 'cafy';
-import define from '../../../define';
-import NoteReaction from '../../../../../models/note-reaction';
-import User from '../../../../../models/user';
-import { decodeReaction } from '../../../../../misc/reaction-lib';
-import { packEmojis } from '../../../../../misc/pack-emojis';
+import define from '../../define';
+import NoteReaction from '../../../../models/note-reaction';
+import { decodeReaction } from '../../../../misc/reaction-lib';
+import { packEmojis } from '../../../../misc/pack-emojis';
+import ID, { transform } from '../../../../misc/cafy-id';
 
 export const meta = {
-	tags: ['reactions', 'notes'],
+	tags: ['reactions', 'users'],
 
 	params: {
+		userId: {
+			validator: $.type(ID),
+			transform: transform,
+			desc: {
+				'ja-JP': '対象のユーザーのID',
+				'en-US': 'Target user ID'
+			}
+		},
+
 		limit: {
 			validator: $.optional.either($.optional.num.range(1, 1000), $.str.pipe(v => 1 <= Number(v) && Number(v) <= 1000)),
 			default: 20,
@@ -31,21 +40,10 @@ export const meta = {
 };
 
 export default define(meta, async (ps, me) => {
-	const users = await User.find({
-		host: null,
-		isDeleted: { $ne: true },
-		isSuspended: { $ne: true },
-	}, {
-		fields: {
-			_id: true
-		}
-	});
-
 	const xs = await NoteReaction.aggregate([
 		{
 			$match: {
-				userId: { $in: users.map(x => x._id) },
-				createdAt: { $gt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30) },
+				userId: ps.userId,
 			}
 		},
 		{

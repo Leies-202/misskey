@@ -6,8 +6,8 @@ import { toUnicode } from 'punycode';
 import { emojiRegex, vendorEmojiRegex, localEmojiRegex } from '../misc/emoji-regex';
 
 export function removeOrphanedBrackets(s: string): string {
-	const openBrackets = ['(', '「', '['];
-	const closeBrackets = [')', '」', ']'];
+	const openBrackets = ['(', '['];
+	const closeBrackets = [')', ']'];
 	const xs = cumulativeSum(s.split('').map(c => {
 		if (openBrackets.includes(c)) return 1;
 		if (closeBrackets.includes(c)) return -1;
@@ -216,10 +216,9 @@ export const mfmLanguage = P.createLanguage({
 	hashtag: () => P((input, i) => {
 		const text = input.substr(i);
 		// eslint-disable-next-line no-useless-escape
-		const match = text.match(/^#([^\s\.,!\?'"#:\/\[\]]+)/i);
+		const match = text.match(/^#([^\s\.,!\?'"#:\/()\[\]]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
-		let hashtag = match[1];
-		hashtag = removeOrphanedBrackets(hashtag);
+		const hashtag = match[1];
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 		if (hashtag.match(/^[0-9]+$/)) return P.makeFailure(i, 'not a hashtag');
 		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
@@ -269,7 +268,7 @@ export const mfmLanguage = P.createLanguage({
 			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
 		).map((x: any) => {
 			let name = x.fn;
-			const args = {};
+			const args = {} as any;
 			const separator = x.fn.indexOf('.');
 			if (separator > -1) {
 				name = x.fn.substr(0, separator);

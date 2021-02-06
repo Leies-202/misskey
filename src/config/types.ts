@@ -53,6 +53,9 @@ export type Source = {
 		serverWorkerCount?: number;
 		queueWorkerCount?: number;
 		workerWorkerCount?: number;
+		serverWorkerRestartMin?: number;
+		queueWorkerRestartMin?: number;
+		workerWorkerRestartMin?: number;
 	};
 
 	outgoingAddressFamily?: 'ipv4' | 'ipv6' | 'dual';
@@ -88,9 +91,8 @@ export type DriveConfig = {
 		accessKey: string;
 		secretKey: string;
 		region?: string;
-		transport?: string;
-		sessionToken?: string;
-		partSize?: number;
+		setPublicRead?: boolean;
+		s3ForcePathStyle?: boolean;
 	};
 };
 

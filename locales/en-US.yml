@@ -91,6 +91,7 @@ common:
   empty: 'Empty'
   edit: 'Edit'
   aboutInstance: "About this instance"
+  favoriteReactions: "Favorite reactions"
 
   favorites: "Favorites"
   noteReactions: "Reacted notes"
@@ -706,6 +707,11 @@ common/views/components/poll-editor.vue:
   day: "Days"
 common/views/components/reaction-picker.vue:
   choose-reaction: "Send a reaction"
+  emoji: "Emoji"
+  react: "React"
+  pick: "Pick emoji"
+  random: "Random"
+
 common/views/components/emoji-picker.vue:
   pinned: "Keep picker open"
   search: "Search Emoji"
