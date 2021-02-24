@@ -20,6 +20,10 @@ https://github.com/Leies-202/misskey/commit/ff06c10068faddf1ae6590b2cd10892ef378
 
 https://github.com/Leies-202/misskey/issues/2
 
+### 5.通知音とかをV12のやつに
+
+https://github.com/Leies-202/misskey/commit/f98f767e867a0df8c086b947f18477976a8c3654
+
 バージョン名--lei（数字） の形の時はぶっつけ本番でテスト中(テスト環境をろくすっぽ用意していない怠惰)の証。
 
 以上
