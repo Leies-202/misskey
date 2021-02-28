@@ -407,6 +407,7 @@ export default Vue.extend({
 				color var(--primary)
 
 		> .hashtags
+			max-width 540px
 			margin 0 0 8px 0
 			padding 2px
 			overflow hidden
@@ -514,13 +515,11 @@ export default Vue.extend({
 		pointer-events none
 
 .preview
+	max-width 570px
 	background var(--desktopPostFormBg)
 
 	> summary
 		padding 0px 16px 16px 20px
 		font-size 14px
 		color var(--text)
-
-	> .note
-		border-top solid var(--lineWidth) var(--faceDivider)
 </style>
