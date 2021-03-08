@@ -95,6 +95,18 @@ export default async function(user: IUser, note: INote, quiet = false) {
 		}
 	}
 
+	// このNoteに対するPureRenoteを削除
+	Note.remove({
+		$and: [
+			{ renoteId: note._id },
+			{ text: null },
+			{ fileIds: [] },
+			{ poll: null }
+		]
+	}, {
+		multi: true
+	});
+
 	if (!quiet) {
 		publishNoteStream(note._id, 'deleted', {
 			deletedAt: deletedAt
