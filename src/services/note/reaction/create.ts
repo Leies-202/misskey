@@ -49,7 +49,7 @@ export default async (user: IUser, note: INote, reaction?: string, dislike = fal
 	perUserReactionsChart.update(user, note);
 
 	const decodedReaction = decodeReaction(reaction);
-	const emoji = (await packEmojis([], note._user.host, [decodedReaction.replace(/:/g, '')]))[0];
+	const emoji = (await packEmojis([decodedReaction.replace(/:/g, '')], note._user.host))[0];
 
 	publishNoteStream(note._id, 'reacted', {
 		reaction: decodedReaction,
@@ -59,8 +59,8 @@ export default async (user: IUser, note: INote, reaction?: string, dislike = fal
 
 	if (note.reactionCounts == null) {
 		(async () => {
-			const fresh = await Note.findOne({ _id: note._id });
-			publishHotStream(await pack(fresh));
+			const fresh = (await Note.findOne({ _id: note._id }))!;
+			publishHotStream((await pack(fresh))!);
 		})();
 	}
 

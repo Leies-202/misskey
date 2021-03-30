@@ -11,7 +11,7 @@ import Instance from '../../models/instance';
 import instanceChart from '../../services/chart/instance';
 import { getApId } from '../../remote/activitypub/type';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
-import { isBlockedHost } from '../../misc/instance-info';
+import { isBlockedHost } from '../../services/instance-moderation';
 import { InboxJobData } from '../type';
 import DbResolver from '../../remote/activitypub/db-resolver';
 import { inspect } from 'util';
@@ -19,6 +19,7 @@ import { extractApHost } from '../../misc/convert-host';
 import { LdSignature } from '../../remote/activitypub/misc/ld-signature';
 import resolveUser from '../../remote/resolve-user';
 import config from '../../config';
+import { publishInstanceModUpdated } from '../../services/server-event';
 
 const logger = new Logger('inbox');
 
@@ -139,7 +140,9 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 
 		Instance.update({ _id: i._id }, {
 			$set: set
-		});
+		}).then(() => {
+			publishInstanceModUpdated();
+		})
 
 		UpdateInstanceinfo(i, job.data.request);
 
