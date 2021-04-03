@@ -3,7 +3,7 @@
 	<div class="backdrop" ref="backdrop" @click="close"></div>
 	<div class="popover" :class="{ isMobile: $root.isMobile }" ref="popover">
 		<div class="buttons" ref="buttons">
-			<button v-for="(reaction, i) in rs" :key="i" @click="react(reaction)" :tabindex="i + 1" :title="/^[a-z]+$/.test(reaction) ? $t('@.reactions.' + reaction) : reaction" v-particle><mk-reaction-icon :reaction="reaction"/></button>
+			<button v-for="(reaction, i) in rs" :key="i" @click="react(reaction)" :tabindex="i + 1" :title="/^[a-z]+$/.test(reaction) ? $t('@.reactions.' + reaction) : reaction"><mk-reaction-icon :reaction="reaction"/></button>
 		</div>
 		<div class="text">
 			<input v-model="text" :placeholder="$t('emoji')" @keyup.enter="reactText" @keydown.esc="close" @input="tryReactText" v-autocomplete="{ model: 'text', noZwsp: true }" ref="text">
@@ -113,7 +113,7 @@ export default Vue.extend({
 			anime({
 				targets: this.$refs.backdrop,
 				opacity: 1,
-				duration: this.animation ? 100 : 0,
+				duration: this.animation ? 50 : 0,
 				easing: 'linear'
 			});
 
@@ -121,7 +121,7 @@ export default Vue.extend({
 				targets: this.$refs.popover,
 				opacity: 1,
 				scale: [0.5, 1],
-				duration: this.animation ? 500 : 0
+				duration: this.animation ? 250 : 0
 			});
 		});
 	},

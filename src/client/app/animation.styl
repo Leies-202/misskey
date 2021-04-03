@@ -2,7 +2,7 @@
 .zoom-in-top-leave-active {
 	opacity: 1;
 	transform: scaleY(1);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1), opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);
 	transform-origin: center top;
 }
 .zoom-in-top-enter,
@@ -15,7 +15,7 @@
 .zoom-in-bottom-leave-active {
 	opacity: 1;
 	transform: scaleY(1);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+	transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1), opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);
 	transform-origin: center bottom;
 }
 .zoom-in-bottom-enter,
@@ -226,4 +226,50 @@
 	&:hover {
 		filter: blur(0px);
 	}
+}
+
+.marquee {
+	position: relative;
+	left: 100%;
+	animation: anim-marquee 10s linear infinite;
+}
+
+.marqueeAlternate {
+	position: relative;
+	left: 100%;
+	animation: anim-marquee 10s linear infinite alternate;
+}
+
+@keyframes anim-marquee {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(-100%); }
+}
+
+.marqueeReverse {
+	position: relative;
+	left: 100%;
+	animation: anim-marqueeReverse 10s linear infinite;
+}
+
+@keyframes anim-marqueeReverse {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
+}
+
+.marqueeSlide {
+	animation: anim-marqueeSlide 10s linear;
+}
+
+@keyframes anim-marqueeSlide {
+	0% { transform: translateX(100%); }
+	100% { transform: translateX(0%); }
+}
+
+.marqueeReverseSlide {
+	animation: anim-marqueeReverseSlide 10s linear;
+}
+
+@keyframes anim-marqueeReverseSlide {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(100%); }
 }
