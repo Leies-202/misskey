@@ -365,12 +365,14 @@ export default Vue.component('misskey-flavored-markdown', {
 					const h = (href as string | null)?.match(/https?:\/\/\S+/);
 
 					if (t && h) {
-						const tu = new URL(t[0]);
-						const hu = new URL(h[0]);
+						try {
+							const tu = new URL(t[0]);
+							const hu = new URL(h[0]);
 
-						if (tu.hostname !== hu.hostname) {
-							text = href;
-						}
+							if (tu.hostname !== hu.hostname) {
+								text = href;
+							}
+						} catch {}
 					}
 
 					return [createElement('a', {
