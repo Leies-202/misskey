@@ -28,9 +28,9 @@ import insertNoteUnread from './unread';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
 import { toASCII } from 'punycode/';
-import extractMentions from '../../misc/extract-mentions';
-import extractEmojis from '../../misc/extract-emojis';
-import extractHashtags from '../../misc/extract-hashtags';
+import { extractMentions } from '../../mfm/extract-mentions';
+import { extractEmojis } from '../../mfm/extract-emojis';
+import { extractHashtags } from '../../mfm/extract-hashtags';
 import { genId } from '../../misc/gen-id';
 import DeliverManager from '../../remote/activitypub/deliver-manager';
 import { deliverToRelays } from '../relay';
@@ -733,7 +733,8 @@ function incNotesCount(user: IUser) {
 	}
 }
 
-async function extractMentionedUsers(user: IUser, tokens: ReturnType<typeof parse>): Promise<IUser[]> {
+// TODO: parseBasicの結果以外でも入れることが出来てしまう
+async function extractMentionedUsers(user: IUser, tokens: ReturnType<typeof parseBasic>): Promise<IUser[]> {
 	if (tokens == null) return [];
 
 	const mentions = extractMentions(tokens);

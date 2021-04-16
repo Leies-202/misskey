@@ -2,6 +2,15 @@
 <ui-card style="margin: 1em auto">
 	<template #title><fa :icon="faQuestionCircle"/> 文字装飾チートシート</template>
 
+	<details style="padding: 0 32px 8px 32px">
+		<summary style="padding: 16px 0; cursor: pointer">Playground</summary>
+		<section>
+			<ui-textarea :slim="false" class="text" v-model="playground"></ui-textarea>
+			<p><mfm :text="playground" :key="playground"/></p>
+			<highlightjs v-if="parsed" :language="json" :code="parsed"/>
+		</section>
+	</details>
+
 	<section>
 		<header>メンション</header>
 		<p>特定のユーザーを示すことができます。</p>
@@ -66,10 +75,23 @@
 	</section>
 
 	<section>
+		<header>上付き・下付き</header>
+		<p><mfm :text="preview_supsub" :key="preview_supsub"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_supsub"></ui-textarea>
+	</section>
+
+	<section>
 		<header>打ち消し線</header>
 		<p>文字に打ち消し線を付けることができます。</p>
 		<p><mfm :text="preview_strike" :key="preview_strike"/></p>
 		<ui-textarea :slim="true" class="text" v-model="preview_strike"></ui-textarea>
+	</section>
+
+	<section>
+		<header>色</header>
+		<p>前景色と背景色を付けることが出来ます</p>
+		<p><mfm :text="preview_color" :key="preview_color"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_color"></ui-textarea>
 	</section>
 
 	<section>
@@ -80,7 +102,7 @@
 	</section>
 
 	<section>
-		<header>中央寄せ (ブロック要素)<</header>
+		<header>中央寄せ (ブロック要素)</header>
 		<p>中央寄せで表示することができます。</p>
 		<p><mfm :text="preview_center" :key="preview_center"/></p>
 		<ui-textarea :slim="true" class="text" v-model="preview_center"></ui-textarea>
@@ -101,27 +123,6 @@
 	</section>
 
 	<section>
-		<header>インライン数式</header>
-		<p>数式 (KaTeX)をインラインで表示します。</p>
-		<p><mfm :text="preview_inlineMath" :key="preview_inlineMath"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_inlineMath"></ui-textarea>
-	</section>
-
-	<section>
-		<header>ブロック数式 (ブロック要素)</header>
-		<p>数式 (KaTeX)をブロックで表示します。</p>
-		<p><mfm :text="preview_blockMath" :key="preview_blockMath"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_blockMath"></ui-textarea>
-	</section>
-
-	<section>
-		<header>検索 (ブロック要素)</header>
-		<p>入力済み検索ボックスを表示させることができます。</p>
-		<p><mfm :text="preview_search" :key="preview_search"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_search"></ui-textarea>
-	</section>
-
-	<section>
 		<header>タイトル (ブロック要素)</header>
 		<p>タイトルのようになります</p>
 		<p><mfm :text="preview_title" :key="preview_title"/></p>
@@ -131,8 +132,14 @@
 	<section>
 		<header>アニメーション</header>
 		<p>いろんなアニメーションをすることができます</p>
-		<p><mfm :text="preview_legacyAnime" :key="preview_legacyAnime"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_legacyAnime"></ui-textarea>
+		<p><mfm :text="preview_anime1" :key="preview_anime1"/></p>
+		<ui-textarea :slim="false" class="text" v-model="preview_anime1"></ui-textarea>
+	</section>
+
+	<section>
+		<header>色ずれアニメーション</header>
+		<p><mfm :text="preview_rgbshift" :key="preview_rgbshift"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_rgbshift"></ui-textarea>
 	</section>
 
 	<section>
@@ -170,16 +177,31 @@
 	</section>
 
 	<section>
-		<header>fn系アニメーション1</header>
+		<header>インライン数式</header>
+		<p>数式 (KaTeX)をインラインで表示します。</p>
+		<p><mfm :text="preview_inlineMath" :key="preview_inlineMath"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_inlineMath"></ui-textarea>
+	</section>
+
+	<section>
+		<header>ブロック数式 (ブロック要素)</header>
+		<p>数式 (KaTeX)をブロックで表示します。</p>
+		<p><mfm :text="preview_blockMath" :key="preview_blockMath"/></p>
+		<ui-textarea :slim="false" class="text" v-model="preview_blockMath"></ui-textarea>
+	</section>
+
+	<section>
+		<header>検索 (ブロック要素)</header>
+		<p>入力済み検索ボックスを表示させることができます。</p>
+		<p><mfm :text="preview_search" :key="preview_search"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_search"></ui-textarea>
+	</section>
+
+	<section>
+		<header>fn系アニメーション</header>
 		<p>fn系はv12の[]でくくるアニメーションです。既出分と似た分。</p>
 		<p><mfm :text="preview_fn1" :key="preview_fn1"/></p>
 		<ui-textarea :slim="false" class="text" v-model="preview_fn1"></ui-textarea>
-	</section>
-	<section>
-		<header>fn系アニメーション2</header>
-		<p>fn系はv12の[]でくくるアニメーションです。新規追加分。</p>
-		<p><mfm :text="preview_fn2" :key="preview_fn2"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fn2"></ui-textarea>
 	</section>
 
 	<section>
@@ -192,12 +214,6 @@
 		<header>fn系回転</header>
 		<p><mfm :text="preview_fnSpin" :key="preview_fnSpin"/></p>
 		<ui-textarea :slim="false" class="text" v-model="preview_fnSpin"></ui-textarea>
-	</section>
-
-	<section>
-		<header>色ずれアニメーション</header>
-		<p><mfm :text="preview_rgbshift" :key="preview_rgbshift"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_rgbshift"></ui-textarea>
 	</section>
 
 	<section>
@@ -240,12 +256,14 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { parseFull } from '../../../../../mfm/parse';
 
 export default Vue.extend({
 	i18n: i18n(''),
 
 	data() {
 		return {
+			playground: '',
 			preview_mention: '@example\n@example@example.com',
 			preview_hashtag: '#test\n\#Misskeyならこれもタグにできちゃいます🍊',
 			preview_url: `https://example.com\n<https://example.com/エスケープされてないもの>`,
@@ -254,7 +272,10 @@ export default Vue.extend({
 			preview_avatar: ':@user: :@user@example.com:',
 			preview_bold: '**太字**\n__abc__ \`// [0-9A-Za-z]にのみ効く見なかったことにしたい記法\`',
 			preview_small: `<small>小さくなります</small>`,
-			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
+			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',
+			preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
+			preview_color: '<color #0000ff lightpink>前景色と背景色</color>',
+			preview_supsub: '上付き<sup>a</sup>\n下付き<sub>b</sub>',
 			preview_quote: `> これは引用です`,
 			preview_center: `<center>中央に</center>`,
 			preview_inlineCode: '`a ? 1 : 0`',
@@ -263,32 +284,38 @@ export default Vue.extend({
 			preview_blockMath: '\\[\nx= \\frac{-b\' \\pm \\sqrt{(b\')^2-ac}}{a}\n\\]',
 			preview_search: `MisskeyでFediverseの世界が広がります 検索`,
 			preview_title: `【タイトル】`,
-			preview_legacyAnime: `<motion>モーション</motion>\n*** ビッグ＋ ***\n<jump>ジャンプ</jump>`,
+			preview_anime1: `<motion>モーション</motion>\n*** ビッグ＋ ***\n**** ビッグ＋＋ ****\n<jump>ジャンプ</jump>\n<blink>blink</blink> <twitch>twitch</twitch> <shake>shake</shake>`,
 			preview_flip: '<flip>左右反転</flip>\n<vflip>上下反転</vflip>\n<flip><vflip>双方反転</vflip></flip>',
 			preview_spin: '<spin>回転</spin> <spin left>左回転</spin> <spin alternate>往復回転</spin>',
 			preview_xspin: '<xspin>回転</xspin> <xspin left>左回転</xspin> <xspin alternate>往復回転</xspin>',
 			preview_yspin: '<yspin>回転</yspin> <yspin left>左回転</yspin> <yspin alternate>往復回転</yspin>',
 			preview_rotate: '<rotate 30>指定角度回転</rotate>',
 			preview_marquee: '<marquee>マーキー (右から左へ)</marquee>\n<marquee reverse>マーキー (左から右へ)</marquee>\n<marquee alternate>マーキー (往復)</marquee>\n<marquee slide>マーキー (右から出てきて左で停止)</marquee>\n<marquee reverse-slide>マーキー (左から出てきて右で停止)</marquee>',
-
 			preview_fn1: '[jelly 🍣] びよんびよん motionに同じ\n'
 				+ '[tada 🍣] じゃーん 太字にならないビッグ＋に同じ\n'
-				+ '[jump 🍣] ジャンプ jump同じ',
-			preview_fn2: '[bounce 🍣] バウンド\n'
+				+ '[jump 🍣] ジャンプ jump同じ\n'
+				+ '[bounce 🍣] バウンド\n'
 				+ '[shake 🍣] ぶるぶる\n'
 				+ '[twitch 🍣] ブレ',
-
 			preview_fnFlip: '[flip MisskeyでFediverseの世界が広がります]\n[flip.v MisskeyでFediverseの世界が広がります]\n[flip.h,v MisskeyでFediverseの世界が広がります]',
 			preview_fnSpin: '[spin あいう] [spin.left あいう] [spin.alternate あいう]\n[spin.x あいう] [spin.x,left あいう] [spin.x,alternate あいう]\n[spin.y あいう] [spin.y,left あいう] [spin.y,alternate あいう]',
 			preview_fnSpeed: '[spin.y,left,speed=1s あいう]\n[spin.y,left,speed=2s あいう]\n[spin.y,left,speed=3s あいう]',
 			preview_fnDelay: '[spin.y,left,speed=1s,delay=0.1s あいう]\n[spin.y,left,speed=1s,delay=0.2s あいう]\n[spin.y,left,speed=1s,delay=0.3s あいう]',
-			preview_rgbshift: '[rgbshift 色ずれアニメーション効果です]',
+			preview_rgbshift: '<rgbshift>色ずれアニメーション効果です</rgbshift>',
 			preview_x: '[x2 あいう]\n[x3 あいう]\n[x4 あいう]',
 			preview_blur: '[blur あいう]',
 			preview_font: '[font.serif serif]\n[font.monospace monospace]',
 
 			faQuestionCircle
 		};
+	},
+
+	computed: {
+		parsed(): string {
+			if (!this.playground) return '';
+			const nodes = parseFull(this.playground) || [];
+			return JSON.stringify(nodes, null, 2);
+		}
 	},
 });
 </script>
