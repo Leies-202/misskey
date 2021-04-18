@@ -914,6 +914,80 @@ describe('parse', () => {
 					text(')')
 				]);
 			});
+
+			it('allow inconsistent parentheses within angle brackets', () => {
+				const tokens = parseFull('<https://example.com/foo(>');
+				assert.deepStrictEqual(tokens, [
+					tree('url', [], { url: 'https://example.com/foo(' }),
+				]);
+			});
+
+			it('allow inconsistent parentheses within angle brackets (for link label)', () => {
+				const tokens = parseFull('[foo](<https://example.com/foo(>)');
+				assert.deepStrictEqual(tokens, [
+					tree('link', [
+						text('foo')
+					], { url: 'https://example.com/foo(', silent: false }),
+				]);
+			});
+
+			it('allow trailing period within angle brackets', () => {
+				const tokens = parseFull('<https://example.com/foo.>');
+				assert.deepStrictEqual(tokens, [
+					tree('url', [], { url: 'https://example.com/foo.' }),
+				]);
+			});
+
+			it('allow trailing period within angle brackets (for link label)', () => {
+				const tokens = parseFull('[foo](<https://example.com/foo.>)');
+				assert.deepStrictEqual(tokens, [
+					tree('link', [
+						text('foo')
+					], { url: 'https://example.com/foo.', silent: false }),
+				]);
+			});
+
+			it('disallow non http URLs <>', () => {
+				const tokens = parseFull('<ftp://example.com/>');
+				assert.deepStrictEqual(tokens, [
+					text('<ftp://example.com/>'),
+				]);
+			});
+
+			it('disallow non URLs <>', () => {
+				const tokens = parseFull('<foo>');
+				assert.deepStrictEqual(tokens, [
+					text('<foo>'),
+				]);
+			});
+
+			it('disallow non http URLs []()', () => {
+				const tokens = parseFull('[foo](ftp://example.com/)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](ftp://example.com/)'),
+				]);
+			});
+
+			it('disallow non URLs []()', () => {
+				const tokens = parseFull('[foo](foo)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](foo)'),
+				]);
+			});
+
+			it('disallow non http URLs [](<>)', () => {
+				const tokens = parseFull('[foo](<ftp://example.com/>)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](<ftp://example.com/>)'),
+				]);
+			});
+
+			it('disallow non URLs [](<>)', () => {
+				const tokens = parseFull('[foo](<foo>)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](<foo>)'),
+				]);
+			});
 		});
 
 		it('emoji', () => {
@@ -1263,7 +1337,11 @@ describe('fromHtml', () => {
 	});
 
 	it('link with different text, but not encoded', () => {
-		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/ä">c</a> d</p>'), 'a [c](<https://example.com/ä>) d');
+		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/ä">c</a> d</p>'), 'a [c](https://example.com/%C3%A4) d');
+	});
+
+	it('link with different text, but ()', () => {
+		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/(">c</a> d</p>'), 'a [c](https://example.com/%28) d');
 	});
 
 	it('link with same text', () => {
@@ -1271,11 +1349,11 @@ describe('fromHtml', () => {
 	});
 
 	it('link with same text, but not encoded', () => {
-		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/ä">https://example.com/ä</a> d</p>'), 'a <https://example.com/ä> d');
+		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/ä">https://example.com/ä</a> d</p>'), 'a [https://example.com/ä](https://example.com/%C3%A4) d');
 	});
 
 	it('link with no url', () => {
-		assert.deepStrictEqual(fromHtml('<p>a <a href="b">c</a> d</p>'), 'a [c](b) d');
+		assert.deepStrictEqual(fromHtml('<p>a <a href="b">c</a> d</p>'), 'a c d');
 	});
 
 	it('link without href', () => {

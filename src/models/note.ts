@@ -439,7 +439,7 @@ export const pack = async (
 
 	if (nodes) {
 		const mfmTypes = extractMfmTypes(nodes);
-		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji'].includes(x)) || [];
+		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji', 'blockCode', 'inlineCode'].includes(x)) || [];
 		packed.notHaveDecorationMfm = decorationMfmTypes.length === 0;
 	}
 

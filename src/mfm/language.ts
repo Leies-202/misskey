@@ -24,8 +24,16 @@ export const mfmLanguage = P.createLanguage({
 	root: r => P.alt(r.block, r.inline).atLeast(1),
 	plain: r => P.alt(r.emoji, r.text).atLeast(1),
 	plainX: r => P.alt(r.inline).atLeast(1),
-	basic: r => P.alt(r.blockBasic, r.inlineBasic).atLeast(1),
-	thin: r => P.alt(r.inlineThin).atLeast(1),
+	basic: r => P.alt(
+		r.mention,
+		r.hashtag,
+		r.url,
+		r.link,
+		r.emoji,
+		r.text,
+		r.inlineCode,
+		r.blockCode,
+	).atLeast(1),
 	block: r => P.alt(
 		r.title,
 		r.quote,
@@ -69,26 +77,6 @@ export const mfmLanguage = P.createLanguage({
 		r.rgbshift,
 
 		r.text
-	),
-	blockBasic: r => P.alt(
-		r.blockCode
-	),
-	inlineBasic: r => P.alt(
-		r.mention,
-		r.hashtag,
-		r.url,
-		r.link,
-		r.emoji,
-		r.text,
-		r.inlineCode,
-	),
-	inlineThin: r => P.alt(
-		r.mention,
-		r.hashtag,
-		r.url,
-		r.link,
-		r.emoji,
-		r.text,
 	),
 	startOfLine: () => P((input, i) => {
 		if (i == 0 || input[i] == '\n' || input[i - 1] == '\n') {
@@ -275,13 +263,22 @@ export const mfmLanguage = P.createLanguage({
 		});
 	},
 	hashtag: () => P((input, i) => {
+		// ローカルサーバーでの新規投稿作成時 / クライアントでのパース時 共通で適用したいハッシュタグ条件はここで指定する
+		// ローカルサーバーでの新規投稿作成時 に最終的にどれをハッシュタグとするかはisHashtag()に記述
+		// クライアントでのパース時 に最終的にどれをハッシュタグとするかはタグとして添付されているかで決まる
+
 		const text = input.substr(i);
 		// eslint-disable-next-line no-useless-escape
 		const match = text.match(/^#([^\s\.,!\?'"#:\/()\[\]]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
 		const hashtag = match[1];
+
+		// # + U+20E3 / # + U+FE0F + U+20E3 のような 合字/絵文字異体字セレクタ付きは ハッシュタグ扱いしない
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
+
+		// # の前に英数字はハッシュタグ扱いしない
 		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
+
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
 	url: () => {
@@ -295,10 +292,11 @@ export const mfmLanguage = P.createLanguage({
 					return P.makeFailure(i, 'not a url');
 				url = match[1];
 				i += 2;
-			} else
+			} else {
 				url = match[0];
-			url = removeOrphanedBrackets(url);
-			url = url.replace(/[.,]*$/, '');
+				url = removeOrphanedBrackets(url);
+				url = url.replace(/[.,]*$/, '');
+			}
 			return P.makeSuccess(i + url.length, url);
 		}).map(x => createMfmNode('url', { url: x }));
 	},
