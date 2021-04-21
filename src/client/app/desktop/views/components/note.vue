@@ -86,10 +86,13 @@
 					<fa icon="ban"/>
 				</button>
 				<button v-if="appearNote.myReaction == null" class="reactionButton button" @click="react()" ref="reactButton" :title="$t('add-reaction')">
-					<fa icon="plus"/>
+					<fa-layers>
+						<fa :icon="faLaugh"/>
+						<fa icon="plus" transform="shrink-8 down-4 right-5" style="color: var(--noteActionsReactionHover)"/>
+					</fa-layers>
 				</button>
 				<button v-if="appearNote.myReaction != null" class="reactionButton reacted button" @click="undoReact(appearNote)" ref="reactButton" :title="$t('undo-reaction')">
-					<fa icon="minus"/>
+					<fa :icon="faLaugh"/>
 				</button>
 				<button @click="menu()" ref="menuButton" class="button">
 					<fa icon="ellipsis-h"/>
@@ -110,7 +113,7 @@ import i18n from '../../../i18n';
 import XSub from './note.sub.vue';
 import noteMixin from '../../../common/scripts/note-mixin';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faClock, faLaugh } from '@fortawesome/free-regular-svg-icons';
 import XInstanceInfo from '../../../common/views/components/instance-info.vue';
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
 
@@ -163,7 +166,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faClock,
+			faClock, faLaugh,
 			conversation: [],
 			replies: []
 		};
@@ -402,7 +405,7 @@ export default Vue.extend({
 						color var(--primary)
 
 					&.reactionButton:hover
-						color var(--noteActionsReactionHover)
+						color var(--noteActionsHover)
 
 					&.inhibitedButton
 						cursor not-allowed
@@ -419,6 +422,7 @@ export default Vue.extend({
 						margin 0 0 0 8px
 						color var(--text)
 						opacity 0.7
+						font-size 0.8em
 
 					&.reacted, &.reacted:hover
 						color var(--noteActionsReactionHover)
