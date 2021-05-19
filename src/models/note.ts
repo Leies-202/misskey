@@ -8,7 +8,6 @@ import PollVote from './poll-vote';
 import NoteReaction from './note-reaction';
 import { packMany as packFileMany, IDriveFile } from './drive-file';
 import Following from './following';
-import Emoji from './emoji';
 import { packEmojis } from '../misc/pack-emojis';
 import { dbLogger } from '../db/logger';
 import { decodeReaction, decodeReactionCounts } from '../misc/reaction-lib';
@@ -20,6 +19,7 @@ import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-ut
 import { transform } from '../misc/cafy-id';
 import { extractMfmTypes } from '../mfm/extract-mfm-types';
 import { nyaize } from '../misc/nyaize';
+import { extractEmojis } from '../mfm/extract-emojis';
 
 const Note = db.get<INote>('notes');
 Note.createIndex('uri', { sparse: true, unique: true });
@@ -202,12 +202,10 @@ export const hideNote = async (packedNote: PackedNote, meId: mongo.ObjectID | nu
 	if (hide) {
 		packedNote.fileIds = [];
 		packedNote.files = [];
-		packedNote.mediaIds = [];
-		packedNote.media = [];
 		packedNote.replyId = null;
-		packedNote.reply = [];
+		packedNote.reply = null;
 		packedNote.appId = null;
-		packedNote.visibleUserIds = null;
+		packedNote.visibleUserIds = [];
 		packedNote.reactionCounts = {};
 		packedNote.renoteCount = 0;
 		packedNote.repliesCount = 0;
@@ -215,7 +213,6 @@ export const hideNote = async (packedNote: PackedNote, meId: mongo.ObjectID | nu
 		packedNote.poll = null;
 		packedNote.cw = null;
 		packedNote.tags = [];
-		packedNote.geo = null;
 		packedNote.isHidden = true;
 	}
 };
@@ -284,37 +281,22 @@ export const pack = async (
 		return null;
 	}
 
-	let text = db.text;
-
-	if (db.name && (db.url || db.uri)) {
-		text = `【${db.name}】\n${(db.text || '').trim()}\n\n${db.url || db.uri}`;
-	}
-
 	const reactionCounts = db.reactionCounts ? decodeReactionCounts(db.reactionCounts) : {};
 
 	const populateEmojis = async () => {
 		// _note._userを消す前か、_note.userを解決した後でないとホストがわからない
 		if (db!._user) {
 			const host = db!._user.host;
-			// 互換性のため。(古いMisskeyではNoteにemojisが無い)
-			if (db!.emojis == null) {
-				return Emoji.find({
-					host: host
-				}, {
-					fields: { _id: false }
-				});
-			} else {
-				const rs = Object.keys(reactionCounts)
-					.filter(x => x && x.startsWith(':'))
-					.map(x => decodeReaction(x))
-					.map(x => x.replace(/:/g, ''));
+			const rs = Object.keys(reactionCounts)
+				.filter(x => x && x.startsWith(':'))
+				.map(x => decodeReaction(x))
+				.map(x => x.replace(/:/g, ''));
 
-				return packEmojis(db!.emojis.concat(rs), host)
-					.catch(e => {
-						console.warn(e);
-						return [];
-					});
-			}
+			return packEmojis(db!.emojis.concat(rs), host)
+				.catch(e => {
+					console.warn(e);
+					return [];
+				});
 		} else {
 			return [];
 		}
@@ -384,12 +366,19 @@ export const pack = async (
 		return renote ? `${renote._id}` : null;
 	};
 
+	const nodes = db.text ? parseFull(db.text) : [];
+
+	// 互換性のため。(古いMisskeyではNoteにemojisが無い)
+	if (db.emojis == null && nodes) {
+		db.emojis = extractEmojis(nodes);
+	}
+
 	const packed: PackedNote = await awaitAll({
 		id: toOidString(db._id),
 		createdAt: toISODateOrNull(db.createdAt),
 		deletedAt: toISODateOrNull(db.deletedAt),
 		updatedAt: toISODateOrNull(db.updatedAt),
-		text: text,
+		text: db.text,
 		cw: db.cw,
 		userId: toOidString(db.userId),
 		user: packUser(db.__user as IUser || db.userId, meId),
@@ -434,8 +423,6 @@ export const pack = async (
 			} : {})
 		} : {})
 	});
-
-	const nodes = packed.text ? parseFull(packed.text) : [];
 
 	if (nodes) {
 		const mfmTypes = extractMfmTypes(nodes);

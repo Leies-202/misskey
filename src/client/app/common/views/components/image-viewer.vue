@@ -1,7 +1,7 @@
 <template>
 <div class="dkjvrdxtkvqrwmhfickhndpmnncsgacq" v-hotkey.global="keymap">
 	<div class="bg" @click="close"></div>
-	<img ref="img" :src="img.url" :alt="img.name" :title="img.name" @click="close" @load="loaded"/>
+	<img ref="img" :src="img.url" :alt="img.name" :title="img.name" @click="close" @load="loaded" v-touch:swipe.left="next" v-touch:swipe.right="prev"/>
 	<button v-if="isMultiple && !isFirst" class="prev" @click="prev">
 		<fa :icon="faChevronLeft"/>
 	</button>
