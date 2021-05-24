@@ -194,10 +194,10 @@
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-"@redocly/openapi-core@1.0.0-beta.45":
-  version "1.0.0-beta.45"
-  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.0.0-beta.45.tgz#82f745ae202ae849f17b142836f1b04b8c23b96a"
-  integrity sha512-41KdYkUfoq5y1GFirLJYyxxTHoMCA935ljjPJNJipLVlpL9HSKnFYdDwgsfxQqJntgvvMcfpiCDwJ/uUhTrzbQ==
+"@redocly/openapi-core@1.0.0-beta.47":
+  version "1.0.0-beta.47"
+  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.0.0-beta.47.tgz#ef595492979c0613ab746daac6cee8544def7299"
+  integrity sha512-56/kDeWBc6qZflVRRKm6lPXUxEimbbfr3eC17A5cSgMNCV+RbkTJ7rHuuc6elmq0U71ke+jaQeWJvwQ2mbYscA==
   dependencies:
     "@redocly/ajv" "^6.12.3"
     "@types/node" "^14.11.8"
