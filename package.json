@@ -193,7 +193,7 @@
 		"stylus-loader": "5.0.0",
 		"systeminformation": "5.7.6",
 		"syuilo-password-strength": "0.0.1",
-		"terser-webpack-plugin": "4.2.3",
+		"terser-webpack-plugin": "5.1.3",
 		"textarea-caret": "3.1.0",
 		"three": "0.127.0",
 		"tinycolor2": "1.4.2",
