@@ -2,8 +2,9 @@ import * as mongo from 'mongodb';
 import * as promiseLimit from 'promise-limit';
 import { toUnicode } from 'punycode/';
 
+import $, { Context } from 'cafy';
 import config from '../../../config';
-import User, { validateUsername, IUser, IRemoteUser, isRemoteUser } from '../../../models/user';
+import User, { IUser, IRemoteUser, isRemoteUser } from '../../../models/user';
 import Resolver from '../resolver';
 import { resolveImage } from './image';
 import { isCollectionOrOrderedCollection, isCollection, isOrderedCollection, IObject, isActor, IActor, isPropertyValue, IApPropertyValue, ApObject, getApIds, getOneApHrefNullable, isOrderedCollectionPage, isCreate, isPost, getApType, getApId, IApImage } from '../type';
@@ -47,23 +48,18 @@ function validateActor(x: IObject, uri: string): IActor {
 		throw new Error(`invalid Actor type '${x.type}'`);
 	}
 
-	if (typeof x.preferredUsername !== 'string') {
-		throw new Error('invalid Actor: preferredUsername is not a string');
-	}
+	const validate = (name: string, value: any, validater: Context) => {
+		const e = validater.test(value);
+		if (e) throw new Error(`invalid Actor: ${name} ${e.message}`);
+	};
 
-	if (typeof x.inbox !== 'string') {
-		throw new Error('invalid Actor: inbox is not a string');
-	}
+	validate('id', x.id, $.str.min(1));
+	validate('inbox', x.inbox, $.str.min(1));
+	validate('preferredUsername', x.preferredUsername, $.str.min(1).max(128).match(/^\w([\w-.]*\w)?$/));
+	validate('name', x.name, $.optional.nullable.str.max(128));
+	validate('summary', x.summary, $.optional.nullable.str.max(2048));
 
-	if (!validateUsername(x.preferredUsername, true)) {
-		throw new Error('invalid Actor: invalid username');
-	}
-
-	if (typeof x.id !== 'string') {
-		throw new Error('invalid Actor: id is not a string');
-	}
-
-	const idHost = toUnicode(new URL(x.id).hostname.toLowerCase());
+	const idHost = toUnicode(new URL(x.id!).hostname.toLowerCase());
 	if (idHost !== expectHost) {
 		throw new Error('invalid Actor: id has different host');
 	}
@@ -304,18 +300,9 @@ export async function updatePerson(uri: string, resolver?: Resolver, hint?: IAct
 	logger.info(`Updating the Person: ${person.id}`);
 
 	const [followersCount = 0, followingCount = 0, notesCount = 0] = await Promise.all([
-		resolver.resolve(person.followers).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		),
-		resolver.resolve(person.following).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		),
-		resolver.resolve(person.outbox).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		)
+		getCollectionCount(person.followers, resolver).catch(() => undefined),
+		getCollectionCount(person.following, resolver).catch(() => undefined),
+		getCollectionCount(person.outbox, resolver).catch(() => undefined),
 	]);
 
 	// アイコンとヘッダー画像をフェッチ
@@ -420,7 +407,7 @@ export async function updatePerson(uri: string, resolver?: Resolver, hint?: IAct
  * Misskeyに対象のPersonが登録されていればそれを返し、そうでなければ
  * リモートサーバーからフェッチしてMisskeyに登録しそれを返します。
  */
-export async function resolvePerson(uri: string, verifier?: string, resolver?: Resolver): Promise<IUser> {
+export async function resolvePerson(uri: string, verifier?: string | null, resolver?: Resolver): Promise<IUser> {
 	if (typeof uri !== 'string') throw 'uri is not string';
 
 	//#region このサーバーに既に登録されていたらそれを返す
