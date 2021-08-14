@@ -1,5 +1,4 @@
 The fork of [Meisskey](https://github.com/mei23/misskey)
-
 ## 改造したところ
 
 上述の通りめいすきーがベースである。そのうえでの改造。
@@ -27,3 +26,7 @@ https://github.com/Leies-202/misskey/commit/f98f767e867a0df8c086b947f18477976a8c
 バージョン名--lei（数字） の形の時はぶっつけ本番でテスト中(テスト環境をろくすっぽ用意していない怠惰)の証。
 
 以上
+
+
+簡単なセットアップ方法はこの辺
+https://github.com/mei23/memo/blob/master/misskey/Setup-Ubuntu2004-Quick.md
