@@ -66,7 +66,7 @@ const defaultDeviceSettings = Object.assign({
 	lang: null,
 	debug: false,
 	showAdvancedSettings: false,
-	alwaysShowNsfw: false,
+	alwaysShowNsfw: true,
 	alwaysOpenCw: false,
 	disableClientImageResizing: false,
 	postStyle: 'standard',
