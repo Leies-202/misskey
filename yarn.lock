@@ -1779,10 +1779,10 @@ builtin-modules@^1.1.1:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bull@3.28.1:
-  version "3.28.1"
-  resolved "https://registry.yarnpkg.com/bull/-/bull-3.28.1.tgz#33bc7bbe640e71258a2a800935a692a24a2d7236"
-  integrity sha512-TasVWD1410Q8druRG6SIAN5hwAT3F4QICcGszReD859qAerq+VwbW3vPg6lV60reJkWyWBK11FHa2FsQ8iDBmQ==
+bull@3.29.0:
+  version "3.29.0"
+  resolved "https://registry.yarnpkg.com/bull/-/bull-3.29.0.tgz#079caafa72c4402033ab67f6d42f5ff52a108c25"
+  integrity sha512-ad9BvfPczwzkQ9wpM6jtAUNthyAGdHoJZVpY3dTp8jPYHETH9l4LdxJYjrKNBHjT4YUeqLzj/2r1L2MYre2ETg==
   dependencies:
     cron-parser "^2.13.0"
     debuglog "^1.0.0"
@@ -2287,6 +2287,11 @@ colord@^2.0.1:
   resolved "https://registry.yarnpkg.com/colord/-/colord-2.0.1.tgz#1e7fb1f9fa1cf74f42c58cb9c20320bab8435aa0"
   integrity sha512-vm5YpaWamD0Ov6TSG0GGmUIwstrWcfKQV/h2CmbR7PbNu41+qdB5PW9lpzhjedrpm08uuYvcXi0Oel1RLZIJuA==
 
+colord@^2.6:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/colord/-/colord-2.7.0.tgz#706ea36fe0cd651b585eb142fe64b6480185270e"
+  integrity sha512-pZJBqsHz+pYyw3zpX6ZRXWoCHM1/cvFikY9TV8G3zcejCaKE0lhankoj8iScyrrePA8C7yJ5FStfA9zbcOnw7Q==
+
 colorette@^1.2.0, colorette@^1.2.1, colorette@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
@@ -2496,11 +2501,6 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.1, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-css-color-names@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
-  integrity sha1-gIrcLnnPhHOAabZGyyDsJ762KeA=
-
 css-color-names@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-1.0.1.tgz#6ff7ee81a823ad46e020fa2fd6ab40a887e2ba67"
@@ -2633,10 +2633,10 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-cssnano-preset-default@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/cssnano-preset-default/-/cssnano-preset-default-5.1.3.tgz#caa54183a8c8df03124a9e23f374ab89df5a9a99"
-  integrity sha512-qo9tX+t4yAAZ/yagVV3b+QBKeLklQbmgR3wI7mccrDcR+bEk9iHgZN1E7doX68y9ThznLya3RDmR+nc7l6/2WQ==
+cssnano-preset-default@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/cssnano-preset-default/-/cssnano-preset-default-5.1.4.tgz#359943bf00c5c8e05489f12dd25f3006f2c1cbd2"
+  integrity sha512-sPpQNDQBI3R/QsYxQvfB4mXeEcWuw0wGtKtmS5eg8wudyStYMgKOQT39G07EbW1LB56AOYrinRS9f0ig4Y3MhQ==
   dependencies:
     css-declaration-sorter "^6.0.3"
     cssnano-utils "^2.0.1"
@@ -2650,7 +2650,7 @@ cssnano-preset-default@^5.1.3:
     postcss-merge-longhand "^5.0.2"
     postcss-merge-rules "^5.0.2"
     postcss-minify-font-values "^5.0.1"
-    postcss-minify-gradients "^5.0.1"
+    postcss-minify-gradients "^5.0.2"
     postcss-minify-params "^5.0.1"
     postcss-minify-selectors "^5.1.0"
     postcss-normalize-charset "^5.0.1"
@@ -2673,12 +2673,12 @@ cssnano-utils@^2.0.1:
   resolved "https://registry.yarnpkg.com/cssnano-utils/-/cssnano-utils-2.0.1.tgz#8660aa2b37ed869d2e2f22918196a9a8b6498ce2"
   integrity sha512-i8vLRZTnEH9ubIyfdZCAdIdgnHAUeQeByEeQ2I7oTilvP9oHO6RScpeq3GsFUVqeB8uZgOQ9pw8utofNn32hhQ==
 
-cssnano@5.0.7:
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-5.0.7.tgz#e81894bdf31aa01a0ca3d1d0eee47be18f7f3012"
-  integrity sha512-7C0tbb298hef3rq+TtBbMuezBQ9VrFtrQEsPNuBKNVgWny/67vdRsnq8EoNu7TRjAHURgYvWlRIpCUmcMZkRzw==
+cssnano@5.0.8:
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-5.0.8.tgz#39ad166256980fcc64faa08c9bb18bb5789ecfa9"
+  integrity sha512-Lda7geZU0Yu+RZi2SGpjYuQz4HI4/1Y+BhdD0jL7NXAQ5larCzVn+PUGuZbDMYz904AXXCOgO5L1teSvgu7aFg==
   dependencies:
-    cssnano-preset-default "^5.1.3"
+    cssnano-preset-default "^5.1.4"
     is-resolvable "^1.1.0"
     lilconfig "^2.0.3"
     yaml "^1.10.2"
@@ -4144,11 +4144,6 @@ he@1.2.0, he@^1.1.0, he@^1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-hex-color-regex@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
-  integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
-
 highlight.js@10.6.0:
   version "10.6.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.6.0.tgz#0073aa71d566906965ba6e1b7be7b2682f5e18b6"
@@ -4175,16 +4170,6 @@ hpagent@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/hpagent/-/hpagent-0.1.2.tgz#cab39c66d4df2d4377dbd212295d878deb9bdaa9"
   integrity sha512-ePqFXHtSQWAFXYmj+JtOTHr84iNrII4/QRlAAPPE+zqnKy4xJo7Ie1Y4kC7AdB+LxLxSTTzBMASsEcy0q8YyvQ==
-
-hsl-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/hsl-regex/-/hsl-regex-1.0.0.tgz#d49330c789ed819e276a4c0d272dffa30b18fe6e"
-  integrity sha1-1JMwx4ntgZ4nakwNJy3/owsY/m4=
-
-hsla-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/hsla-regex/-/hsla-regex-1.0.0.tgz#c1ce7a3168c8c6614033a4b5f7877f3b225f9c38"
-  integrity sha1-wc56MWjIxmFAM6S194d/OyJfnDg=
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
@@ -4457,15 +4442,16 @@ invert-kv@^3.0.0:
   integrity sha512-CYdFeFexxhv/Bcny+Q0BfOV+ltRlJcd4BBZBYFX/O0u4npJrgZtIcjokegtiSMAvlMTJ+Koq0GBCc//3bueQxw==
 
 ioredis@^4.27.0:
-  version "4.27.5"
-  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.27.5.tgz#b62192bb6198f8a5a02947902117150aef39b7f1"
-  integrity sha512-JJ3HzOzU6kgUk3gKhpx8kxEYn9ruI5TkpOtGvbw/hLyWxfC19T9uCZTgmw4Mci4al4aOCCMfAjYzJ7aqQkLbJg==
+  version "4.27.8"
+  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.27.8.tgz#822c2d1ac44067a8f7b92fb673070fc9d661c56e"
+  integrity sha512-AcMEevap2wKxNcYEybZ/Qp+MR2HbNNUwGjG4sVCC3cAJ/zR9HXKAkolXOuR6YcOGPf7DHx9mWb/JKtAGujyPow==
   dependencies:
     cluster-key-slot "^1.1.0"
     debug "^4.3.1"
     denque "^1.1.0"
     lodash.defaults "^4.2.0"
     lodash.flatten "^4.4.0"
+    lodash.isarguments "^3.1.0"
     p-map "^2.1.0"
     redis-commands "1.7.0"
     redis-errors "^1.2.0"
@@ -4548,18 +4534,6 @@ is-callable@^1.1.4, is-callable@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.5.tgz#f7e46b596890456db74e7f6e976cb3273d06faab"
   integrity sha512-ESKv5sMCJB2jnHTWZ3O5itG+O128Hsus4K4Qh1h2/cgn2vbgnLSVqfV46AeJA9D5EeeLa9w81KUXMtn34zhX+Q==
-
-is-color-stop@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/is-color-stop/-/is-color-stop-1.1.0.tgz#cfff471aee4dd5c9e158598fbe12967b5cdad345"
-  integrity sha1-z/9HGu5N1cnhWFmPvhKWe1za00U=
-  dependencies:
-    css-color-names "^0.0.4"
-    hex-color-regex "^1.1.0"
-    hsl-regex "^1.0.0"
-    hsla-regex "^1.0.0"
-    rgb-regex "^1.0.1"
-    rgba-regex "^1.0.0"
 
 is-core-module@^2.2.0:
   version "2.2.0"
@@ -5453,7 +5427,7 @@ lodash.foreach@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
   integrity sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
 
-lodash.isarguments@^3.0.0:
+lodash.isarguments@^3.0.0, lodash.isarguments@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
   integrity sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo=
@@ -6789,13 +6763,13 @@ postcss-minify-font-values@^5.0.1:
   dependencies:
     postcss-value-parser "^4.1.0"
 
-postcss-minify-gradients@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-minify-gradients/-/postcss-minify-gradients-5.0.1.tgz#2dc79fd1a1afcb72a9e727bc549ce860f93565d2"
-  integrity sha512-odOwBFAIn2wIv+XYRpoN2hUV3pPQlgbJ10XeXPq8UY2N+9ZG42xu45lTn/g9zZ+d70NKSQD6EOi6UiCMu3FN7g==
+postcss-minify-gradients@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-minify-gradients/-/postcss-minify-gradients-5.0.2.tgz#7c175c108f06a5629925d698b3c4cf7bd3864ee5"
+  integrity sha512-7Do9JP+wqSD6Prittitt2zDLrfzP9pqKs2EcLX7HJYxsxCOwrrcLt4x/ctQTsiOw+/8HYotAoqNkrzItL19SdQ==
   dependencies:
+    colord "^2.6"
     cssnano-utils "^2.0.1"
-    is-color-stop "^1.1.0"
     postcss-value-parser "^4.1.0"
 
 postcss-minify-params@^5.0.1:
@@ -7696,16 +7670,6 @@ reusify@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
-
-rgb-regex@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/rgb-regex/-/rgb-regex-1.0.1.tgz#c0e0d6882df0e23be254a475e8edd41915feaeb1"
-  integrity sha1-wODWiC3w4jviVKR16O3UGRX+rrE=
-
-rgba-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
-  integrity sha1-QzdOLiyglosO8VI0YLfXMP8i7rM=
 
 right-align@^0.1.1:
   version "0.1.3"
@@ -8821,10 +8785,10 @@ ts-loader@9.2.5:
     micromatch "^4.0.0"
     semver "^7.3.4"
 
-ts-node@10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.2.0.tgz#f1e88249a00e26aa95e9a93c50f70241a8a1c4bb"
-  integrity sha512-FstYHtQz6isj8rBtYMN4bZdnXN1vq4HCbqn9vdNQcInRqtB86PePJQIxE6es0PhxKWhj2PHuwbG40H+bxkZPmg==
+ts-node@10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.2.1.tgz#4cc93bea0a7aba2179497e65bb08ddfc198b3ab5"
+  integrity sha512-hCnyOyuGmD5wHleOQX6NIjJtYVIO8bPP8F2acWkB4W06wdlkgyvJtubO/I9NkI88hCFECbsEgoLc0VNkYmcSfw==
   dependencies:
     "@cspotcode/source-map-support" "0.6.1"
     "@tsconfig/node10" "^1.0.7"
@@ -9640,7 +9604,12 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@7.5.3, ws@^7.4.6:
+ws@8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.0.tgz#0b738cd484bfc9303421914b11bb4011e07615bb"
+  integrity sha512-uYhVJ/m9oXwEI04iIVmgLmugh2qrZihkywG9y5FfZV2ATeLIzHf93qs+tUNqlttbQK957/VX3mtwAS+UfIwA4g==
+
+ws@^7.4.6:
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.3.tgz#160835b63c7d97bfab418fc1b8a9fced2ac01a74"
   integrity sha512-kQ/dHIzuLrS6Je9+uv81ueZomEwH0qVYstcAQ4/Z93K8zeko9gtAbttJWzoC5ukqXY1PpoouV3+VSOqEAFt5wg==
