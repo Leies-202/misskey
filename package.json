@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.518-m544",
+	"version": "10.102.520-m544",
 	"codename": "m544",
 	"repository": {
 		"type": "git",
@@ -164,7 +164,7 @@
 		"parsimmon": "1.18.0",
 		"postcss": "8.3.9",
 		"postcss-loader": "5.3.0",
-		"private-ip": "2.2.1",
+		"private-ip": "2.3.0",
 		"probe-image-size": "7.2.1",
 		"progress-bar-webpack-plugin": "2.1.0",
 		"promise-limit": "2.7.0",
