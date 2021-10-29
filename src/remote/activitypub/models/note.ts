@@ -143,7 +143,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 				return x;
 			}
 		}).catch(async e => {
-			// トークだったらinReplyToのエラーは無視
+			// チャットだったらinReplyToのエラーは無視
 			const uri = getApId(getOneApId(note.inReplyTo!));
 			if (uri.startsWith(config.url + '/')) {
 				const id = uri.split('/').pop();
@@ -288,6 +288,10 @@ export async function resolveNote(value: string | IObject, resolver?: Resolver |
 			return exist;
 		}
 		//#endregion
+
+		if (uri.startsWith(config.url)) {
+			throw new StatusError('cannot resolve local note', 400, 'cannot resolve local note');
+		}
 
 		// リモートサーバーからフェッチしてきて登録
 		// ここでuriの代わりに添付されてきたNote Objectが指定されていると、サーバーフェッチを経ずにノートが生成されるが
