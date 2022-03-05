@@ -9,6 +9,7 @@ import { isSelfHost } from '../../../../misc/convert-host';
 import { getHideRenoteUserIds } from '../../common/get-hide-renote-users';
 import { oidIncludes } from '../../../../prelude/oid';
 import { getPackedTimeline } from '../../common/get-timeline';
+import config from '../../../../config';
 
 export const meta = {
 	desc: {
@@ -83,11 +84,11 @@ export const meta = {
 			}
 		},
 
-		excludeForeignReply: {
+		includeForeignReply: {
 			validator: $.optional.bool,
 			default: false,
 			desc: {
-				'ja-JP': 'フォロー外リプライを含めない'
+				'ja-JP': '外部リプライを含める'
 			}
 		},
 
@@ -150,7 +151,7 @@ export default define(meta, async (ps, user) => {
 	const [followingIds, hideUserIds, hideFromHomeLists, hideRenoteUserIds] = await Promise.all([
 		// フォローを取得
 		// Fetch following
-		getFriendIds(user._id),
+		getFriendIds(user._id, true, config.homeTlActiveLimitDays || -1),
 
 		// 隠すユーザーを取得
 		getHideUserIds(user, false),
@@ -227,14 +228,16 @@ export default define(meta, async (ps, user) => {
 	// つまり、「『自分の投稿かつRenote』ではない」を「『自分の投稿ではない』または『Renoteではない』」と表現します。
 	// for details: https://en.wikipedia.org/wiki/De_Morgan%27s_laws
 
-	if (ps.excludeForeignReply) {
+	if (!ps.includeForeignReply) {
 		query.$and.push({
 			$or: [{
-				'_reply.userId': null
+				replyId: null	// normal post
 			}, {
-				'_reply.userId': { $in : concat([followingIds, [user._id]]) }
+				'_reply.userId': user._id	// to me
 			}, {
-				userId: user._id
+				userId: user._id	// my post
+			}, {
+				$expr: { $eq: ['$_reply.userId', '$userId'] }
 			}]
 		});
 	}
