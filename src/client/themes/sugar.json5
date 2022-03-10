@@ -1,0 +1,16 @@
+{
+	id: 'sugar',
+	revision: 2,
+
+        name: 'シュガーな音街',
+        author: 'lei202',
+        desc: '音楽の街に甘い砂糖を',
+
+        base: 'light',
+
+        vars: {
+                primary: 'rgb(30, 52, 181)',
+                secondary: 'rgb(248, 247, 255)',
+                text: 'rgb(191, 15, 156)',
+        },
+}
