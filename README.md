@@ -23,6 +23,10 @@ https://github.com/Leies-202/misskey/issues/2
 
 https://github.com/Leies-202/misskey/commit/f98f767e867a0df8c086b947f18477976a8c3654
 
+### 6.スパイシーなテーマがあるならシュガーなテーマがあってもいいよね(Added SugarTheme)
+
+https://github.com/Leies-202/misskey/commit/919129c952679fd8d10d866c6f11c6cc9ceb39b2
+
 バージョン名--lei（数字） の形の時はぶっつけ本番でテスト中(テスト環境をろくすっぽ用意していない怠惰)の証。
 
 以上
