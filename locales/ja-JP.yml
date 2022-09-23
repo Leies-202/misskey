@@ -448,6 +448,7 @@ common:
     hashtags: "ハッシュタグ"
     words: "トレンドワード"
     queue: "キュー"
+    sunmoon: "太陽と月"
 
   dev: "アプリの作成に失敗しました。再度お試しください。"
   ai-chan-kawaii: "藍ちゃかわいい"
@@ -1078,6 +1079,12 @@ common/views/widgets/tips.vue:
   tips-line23: "藍かわいいよ藍"
   tips-line24: "Misskeyは2014年にサービスを開始しました"
   tips-line25: "対応ブラウザではMisskeyを開いていなくても通知を受け取れます"
+
+common/views/widgets/sunmoon.vue:
+  ctStart: "市民薄明"
+  sunrise: "日の出"
+  sunset: "日の入"
+  ctEnd: "市民薄明"
 
 common/views/pages/not-found.vue:
   page-not-found: "ページが見つかりませんでした"
