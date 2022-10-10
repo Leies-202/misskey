@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.592-m544",
+	"version": "10.102.594-m544",
 	"codename": "m544",
 	"repository": {
 		"type": "git",
@@ -9,6 +9,9 @@
 	},
 	"main": "./index.js",
 	"private": true,
+	"engines": {
+		"node": ">=14.15.0"
+	},
 	"scripts": {
 		"start": "node ./index.js",
 		"debug": "DEBUG=misskey:* node ./index.js",
@@ -17,7 +20,7 @@
 		"gulp": "gulp build",
 		"clean": "gulp clean",
 		"cleanall": "gulp cleanall",
-		"lint": "gulp lint",
+		"lint": "eslint src/**/*.ts",
 		"test": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
 		"format": "gulp format"
 	},
@@ -31,7 +34,7 @@
 		"@fortawesome/free-regular-svg-icons": "5.15.4",
 		"@fortawesome/free-solid-svg-icons": "5.15.4",
 		"@fortawesome/vue-fontawesome": "2.0.8",
-		"@koa/cors": "3.4.1",
+		"@koa/cors": "3.4.2",
 		"@koa/multer": "3.0.0",
 		"@koa/router": "8.0.8",
 		"@prezzemolo/rap": "0.1.2",
@@ -59,7 +62,7 @@
 		"@types/lodash": "4.14.186",
 		"@types/mocha": "10.0.0",
 		"@types/mongodb": "3.6.20",
-		"@types/node": "18.7.23",
+		"@types/node": "18.8.3",
 		"@types/nodemailer": "6.4.6",
 		"@types/nprogress": "0.2.0",
 		"@types/oauth": "0.9.1",
@@ -91,7 +94,7 @@
 		"autobind-decorator": "2.4.0",
 		"autosize": "4.0.2",
 		"autwh": "0.1.0",
-		"aws-sdk": "2.1225.0",
+		"aws-sdk": "2.1230.0",
 		"bcryptjs": "2.4.3",
 		"bootstrap-vue": "2.22.0",
 		"browser-image-resizer": "2.4.1",
@@ -119,13 +122,13 @@
 		"gulp-sourcemaps": "3.0.0",
 		"gulp-stylus": "2.7.1",
 		"gulp-terser": "2.1.0",
-		"gulp-tslint": "8.1.4",
 		"gulp-typescript": "5.0.1",
 		"highlight.js": "10.6.0",
-		"hpagent": "0.1.2",
 		"html-entities": "2.3.3",
 		"htmlescape": "1.1.1",
+		"http-proxy-agent": "5.0.0",
 		"http-signature": "git+https://github.com/mei23/node-http-signature#v1.6.0-mei",
+		"https-proxy-agent": "5.0.1",
 		"iconv": "3.0.1",
 		"insert-text-at-cursor": "0.3.0",
 		"ioredis": "4.28.5",
@@ -161,7 +164,7 @@
 		"os-utils": "0.0.14",
 		"parse5": "6.0.1",
 		"parsimmon": "1.18.1",
-		"postcss": "8.4.16",
+		"postcss": "8.4.17",
 		"postcss-loader": "6.2.1",
 		"private-ip": "2.3.4",
 		"probe-image-size": "7.2.3",
@@ -184,7 +187,7 @@
 		"speakeasy": "2.0.0",
 		"stringz": "2.1.0",
 		"stylus": "0.59.0",
-		"stylus-loader": "6.2.0",
+		"stylus-loader": "7.1.0",
 		"suncalc": "1.9.0",
 		"systeminformation": "5.12.6",
 		"syuilo-password-strength": "0.0.1",
@@ -225,9 +228,11 @@
 	},
 	"devDependencies": {
 		"@redocly/openapi-core": "1.0.0-beta.110",
+		"@typescript-eslint/eslint-plugin": "5.39.0",
+		"@typescript-eslint/parser": "5.39.0",
 		"cross-env": "7.0.3",
-		"mocha": "10.0.0",
-		"tslint": "6.1.3",
-		"tslint-sonarts": "1.9.0"
+		"eslint": "8.25.0",
+		"eslint-plugin-node": "11.1.0",
+		"mocha": "10.0.0"
 	}
 }

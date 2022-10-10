@@ -6,7 +6,7 @@
 <div v-else-if="tweetId && tweetExpanded" class="twitter" ref="twitter">
 	<iframe ref="tweet" scrolling="no" frameborder="no" :style="{ 'margin-top': '8px', left: `${tweetLeft}px`, width: `${tweetLeft < 0 ? 'auto' : '100%'}`, height: `${tweetHeight}px` }" :src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${$store.state.device.darkmode ? 'dark' : 'light'}&amp;id=${tweetId}`"></iframe>
 	<div class="expandTweet">
-		<a @click="tweetExpanded = false">
+		<a @click.prevent="tweetExpanded = false">
 			{{ $t('collapseTweet') }}
 		</a>
 	</div>
@@ -31,7 +31,7 @@
 		</article>
 	</a>
 	<div class="expandTweet" v-if="tweetId">
-		<a @click="tweetExpanded = true">
+		<a @click.prevent="tweetExpanded = true">
 			{{ $t('expandTweet') }}
 		</a>
 	</div>
