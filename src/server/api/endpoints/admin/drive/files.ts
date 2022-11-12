@@ -35,12 +35,25 @@ export const meta = {
 			validator: $.optional.nullable.str,
 			default: null,
 		},
+
+		attached: {
+			validator: $.optional.str.or([
+				'all',
+				'attached',
+				'notAttached',
+			]),
+		},
+
+		type: {
+			validator: $.optional.str.match(/^[a-zA-Z\/\-\*]+$/)
+		},
 	}
 };
 
 export default define(meta, async (ps, me) => {
 	const q = {
 		'metadata.deletedAt': { $exists: false },
+		$and: [ {} ],
 	} as any;
 
 	if (ps.hostname != null && ps.hostname.length > 0) {
@@ -57,6 +70,30 @@ export default define(meta, async (ps, me) => {
 		} else if (ps.origin === 'remote') {
 			q['metadata._user.host'] = { $ne: null };
 		}
+	}
+
+	if (ps.attached === 'attached') {
+		q.$and.push({
+			$or: [	// any
+				{ 'metadata.attachedNoteIds.0': { $exists: true } },
+				{ 'metadata.attachedMessageIds.0': { $exists: true } },
+				{ _id: me.avatarId },
+				{ _id: me.bannerId },
+			]
+		})
+	} else if (ps.attached === 'notAttached') {
+		q.$and.push({
+			$and: [	// all
+				{ 'metadata.attachedNoteIds.0': { $exists: false } },
+				{ 'metadata.attachedMessageIds.0': { $exists: false } },
+				{ _id: { $ne: me.avatarId } },
+				{ _id: { $ne: me.bannerId } },
+			]
+		});
+	}
+
+	if (ps.type) {
+		q.contentType = new RegExp(`^${ps.type.replace(/\*/g, '.+?')}$`);
 	}
 
 	const files = await File

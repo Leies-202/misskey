@@ -103,6 +103,13 @@ common:
   only-not-followed: "フォローされてないユーザーのみ"
   only-not-following: "フォローしてないユーザーのみ"
   only-moved: "引っ越したユーザーのみ"
+  allAttached: "すべての添付状態"
+  attached: "添付されている"
+  notAttached: "添付されていない"
+  allType: "すべての種類"
+  image: "画像"
+  video: "動画"
+  audio: "音声"
   desktop-mode: 'デスクトップ版'
   mobile-mode: 'モバイル版'
   empty: 'ありません！'
@@ -456,7 +463,7 @@ common:
   you: "あなた"
   startTalk: "チャットを開始"
   addUsertag: "ユーザータグを追加"
-  addUsertagDetail: "ユーザータグは他のユーザーは見れません, @タグでサジェストすることが出来ます"
+  addUsertagDetail: "ユーザータグは他のユーザーは見れません。ユーザー検索で使用することが出来ます。"
   removeUsertagConfirm: "このユーザータグを削除しますか？"
 
 auth/views/form.vue:
@@ -596,6 +603,9 @@ common/views/components/connect-failed.troubleshooter.vue:
   success-desc: "正常に接続できるようです。ページを再度読み込みしてください。"
   flush: "キャッシュの削除"
   set-version: "バージョン指定"
+
+common/views/components/instance.vue:
+  start: "はじめる"
 
 common/views/components/media-banner.vue:
   sensitive: "閲覧注意"
@@ -1240,6 +1250,7 @@ desktop/views/components/note-detail.vue:
   private: "この投稿は非公開です"
   deleted: "この投稿は削除されました"
   location: "位置情報"
+  reply: "返信"
   renote: "Renote"
   add-reaction: "リアクション"
   undo-reaction: "リアクション解除"
