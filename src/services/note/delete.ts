@@ -45,7 +45,7 @@ export default async function(user: IUser, note: INote, quiet = false) {
 			renoteId: null,
 			poll: null,
 			geo: null,
-			cw: null
+			cw: null,
 		}
 	});
 
