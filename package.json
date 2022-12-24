@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.611-m544",
+	"version": "10.102.612-m544",
 	"codename": "m544",
 	"repository": {
 		"type": "git",
@@ -25,8 +25,7 @@
 		"format": "gulp format"
 	},
 	"resolutions": {
-		"lodash": "^4.17.21",
-		"source-map": "^0.8.0-beta.0"
+		"lodash": "^4.17.21"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "1.2.36",
@@ -76,7 +75,7 @@
 		"@types/rename": "1.0.4",
 		"@types/request-stats": "3.0.0",
 		"@types/rimraf": "3.0.2",
-		"@types/seedrandom": "3.0.2",
+		"@types/seedrandom": "3.0.3",
 		"@types/sharp": "0.30.2",
 		"@types/showdown": "2.0.0",
 		"@types/speakeasy": "2.0.7",
@@ -93,7 +92,7 @@
 		"autobind-decorator": "2.4.0",
 		"autosize": "4.0.2",
 		"autwh": "0.1.0",
-		"aws-sdk": "2.1276.0",
+		"aws-sdk": "2.1281.0",
 		"bcryptjs": "2.4.3",
 		"bootstrap-vue": "2.23.1",
 		"browser-image-resizer": "2.4.1",
@@ -189,7 +188,7 @@
 		"stylus": "0.59.0",
 		"stylus-loader": "7.1.0",
 		"suncalc": "1.9.0",
-		"systeminformation": "5.16.6",
+		"systeminformation": "5.16.8",
 		"syuilo-password-strength": "0.0.1",
 		"terser-webpack-plugin": "4.2.3",
 		"textarea-caret": "3.1.0",
@@ -198,6 +197,7 @@
 		"tmp": "0.2.1",
 		"ts-loader": "9.4.2",
 		"ts-node": "10.9.1",
+		"twemoji-parser": "git+https://github.com/mei23/twemoji-parser.git#15.0.1",
 		"typescript": "4.9.4",
 		"uuid": "9.0.0",
 		"v-animate-css": "0.0.5",
