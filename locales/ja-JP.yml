@@ -1399,7 +1399,7 @@ common/views/components/mute-and-block.vue:
 common/views/components/settings/extended-notification.vue:
   extended-notification: "拡張通知"
   highlighted-words: "ハイライトワード"
-  highlighted-words-description: "通知したいワードを1行に1つずつ入力します"
+  highlighted-words-description: "通知したいワードを1行に1つずつ入力します。5つまで指定できます。"
   save: "保存"
 
 common/views/components/password-settings.vue:
@@ -1819,6 +1819,7 @@ admin/views/federation.vue:
   users: "ユーザー"
   system: "システム"
   softwareName: "ソフトウェア"
+  softwareVersion: "バージョン"
   following: "フォロー中"
   followers: "フォロワー"
   caught-at: "登録日時"

@@ -1279,7 +1279,7 @@ common/views/components/mute-and-block.vue:
 common/views/components/settings/extended-notification.vue:
   extended-notification: "Extra notification"
   highlighted-words: "Hightlighted words"
-  highlighted-words-description: "Enter the words you want to notify, one per line"
+  highlighted-words-description: "Enter the words you want to notify, one per line. You can specify up to 5."
   save: "Save"
 common/views/components/password-settings.vue:
   reset: "Change password"
@@ -1655,6 +1655,7 @@ admin/views/federation.vue:
   users: "Users"
   system: "System"
   softwareName: "Software"
+  softwareVersion: "Version"
   following: "Following"
   followers: "Followers"
   caught-at: "Created at"
