@@ -3,7 +3,7 @@ The fork of [Meisskey](https://github.com/mei23/misskey)
 
 上述の通りめいすきーがベースである。そのうえでの改造。
 
-### ~~1.InstanceTicker(Type-41)標準対応~~←同様の機能が標準搭載された影響で、[InstanceTicker側がサポートを終了](https://mk.lei202.com/notes/71758206ef70147724f6b8cb)したため廃止。[info](https://mk.lei202.com/notes/7175737e16f886fb7e75a111)
+### ~~1.InstanceTicker(Type-41)標準対応~~←同様の機能が標準搭載された影響で、[InstanceTicker側がサポートを終了](https://miyon.miyon.org/@miyon/105133132607984414)したため廃止。[info](https://mk.lei202.com/notes/7175737e16f886fb7e75a111)
 
 https://github.com/Leies-202/misskey/commit/4b951a667b105706da5914fd37c6e8fdb55f710a
 
