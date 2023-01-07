@@ -15,11 +15,18 @@
 		</div>
 		<div class="me" v-if="$store.state.i != null">
 			<img class="avatar" :src="$store.state.i.avatarUrl" alt="avatar"/>
-			<p class="name"><mk-user-name :user="$store.state.i"/></p>
+			<div class="info">
+				<div class="name"><mk-user-name :user="$store.state.i"/></div>
+				<div class="roles">
+					<span class="role" v-for="role in $store.getters.roles" :key="role" :title="role">
+						{{ $t(`@.roles.${role}`) }}
+					</span>
+				</div>
+			</div>
 		</div>
 		<ul>
 			<li><router-link to="/dashboard" active-class="active"><fa icon="home" fixed-width/>{{ $t('dashboard') }}</router-link></li>
-			<li><router-link to="/instance" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa icon="cog" fixed-width/>{{ $t('instance') }}</router-link></li>
+			<li><router-link to="/instance" active-class="active" v-if="$store.getters.isAdmin"><fa icon="cog" fixed-width/>{{ $t('instance') }}</router-link></li>
 			<li><router-link to="/queue" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa :icon="faTasks" fixed-width/>{{ $t('queue') }}</router-link></li>
 			<li><router-link to="/moderators" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa :icon="faHeadset" fixed-width/>{{ $t('moderators') }}</router-link></li>
 			<li><router-link to="/users" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa icon="users" fixed-width/>{{ $t('users') }}</router-link></li>
@@ -27,10 +34,10 @@
 			<li><router-link to="/federation" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }}</router-link></li>
 			<li><router-link to="/relays" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa :icon="faProjectDiagram" fixed-width/>{{ $t('relays') }}</router-link></li>
 			<li><router-link to="/emoji" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }}</router-link></li>
-			<li><router-link to="/announcements" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
-			<li><router-link to="/hashtags" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa icon="hashtag" fixed-width/>{{ $t('hashtags') }}</router-link></li>
+			<li><router-link to="/announcements" active-class="active" v-if="$store.getters.isAdmin"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
+			<li><router-link to="/hashtags" active-class="active" v-if="$store.getters.isAdmin"><fa icon="hashtag" fixed-width/>{{ $t('hashtags') }}</router-link></li>
 			<li><router-link to="/abuse" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa :icon="faExclamationCircle" fixed-width/>{{ $t('abuse') }}</router-link></li>
-			<li><router-link to="/instanceblocks" active-class="active" v-if="$store.getters.isAdminOrModerator"><fa icon="ban" fixed-width/>{{ $t('instanceblocks') }}</router-link></li>
+			<li><router-link to="/instanceblocks" active-class="active" v-if="$store.getters.isAdmin"><fa icon="ban" fixed-width/>{{ $t('instanceblocks') }}</router-link></li>
 		</ul>
 		<div class="back-to-misskey">
 			<a href="/"><fa :icon="faArrowLeft"/> {{ $t('back-to-misskey') }}</a>
@@ -200,14 +207,30 @@ export default Vue.extend({
 				border-radius 100%
 				vertical-align middle
 
-			> .name
-				margin 0 16px
-				padding 0
-				color #fff
-				overflow hidden
-				text-overflow ellipsis
-				white-space nowrap
-				font-size 15px
+			> .info
+				margin-left 16px
+
+				> .name
+					color #fff
+					overflow hidden
+					text-overflow ellipsis
+					white-space nowrap
+					font-size 15px
+
+				> .roles
+					margin 3px 0
+
+					> .role
+						display inline-block
+						margin-right 3px
+						padding 3px
+						border-radius 3px
+						font-size 12px
+						color #fff
+						background-color rgba(255, 255, 255, 0.1)
+						overflow hidden
+						text-overflow ellipsis
+						white-space nowrap
 
 		> .back-to-misskey
 			margin 16px 16px 0 16px

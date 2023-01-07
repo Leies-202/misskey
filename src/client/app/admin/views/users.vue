@@ -22,9 +22,9 @@
 					</ui-horizon-group>
 					<ui-horizon-group>
 						<!-- 複数回サスペンド/削除出来るのは仕様 -->
-						<ui-button @click="suspendUser(user.username)" :disabled="suspending"><fa :icon="faSnowflake"/> {{ $t('suspend') }}</ui-button>
+						<ui-button @click="suspendUser(user.username)" :disabled="suspending || user.isModerator || user.isAdmin"><fa :icon="faSnowflake"/> {{ $t('suspend') }}</ui-button>
 						<ui-button v-if="user.isSuspended" @click="unsuspendUser" :disabled="unsuspending">{{ $t('unsuspend') }}</ui-button>
-						<ui-button @click="deleteUser(user.username)">{{ $t('delete') }}</ui-button>
+						<ui-button @click="deleteUser(user.username)" :disabled="deleting || user.isModerator || user.isAdmin">{{ $t('delete') }}</ui-button>
 					</ui-horizon-group>
 					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa :icon="faSync"/> {{ $t('update-remote-user') }}</ui-button>
 					User:
@@ -56,6 +56,7 @@
 					<option value="verified">{{ $t('users.state.verified') }}</option>
 					<option value="silenced">{{ $t('users.state.silenced') }}</option>
 					<option value="suspended">{{ $t('users.state.suspended') }}</option>
+					<option value="deleted">{{ $t('users.state.deleted') }}</option>
 				</ui-select>
 				<ui-select v-model="origin">
 					<template #label>{{ $t('users.origin.title') }}</template>
