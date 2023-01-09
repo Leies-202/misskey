@@ -32,6 +32,8 @@ export type IEmoji = {
 export type IXEmoji = {
 	name: string;
 	url: string;
+	category: string | null;
+	aliases: string[];
 };
 
 /**
@@ -61,5 +63,7 @@ export async function packXEmoji(emoji: any): Promise<IXEmoji> {
 	return {
 		name,
 		url,
+		category: _emoji.category || null,
+		aliases: _emoji.aliases || [],
 	};
 }

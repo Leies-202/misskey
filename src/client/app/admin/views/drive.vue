@@ -64,6 +64,7 @@
 					<option value="image/*">{{ $t('@.image') }}</option>
 					<option value="video/*">{{ $t('@.video') }}</option>
 					<option value="audio/*">{{ $t('@.audio') }}</option>
+					<option value="application/*">{{ $t('@.application') }}</option>
 				</ui-select>
 			</ui-horizon-group>
 			<div class="kidvdlkg" v-for="file in files" :key="file.id">
@@ -80,6 +81,7 @@
 						<div>
 							<div>
 								<span style="margin-right:16px;">{{ file.type }}</span>
+								<span style="margin-right:16px;" v-if="file.deletedAt != null">Deleted</span>
 								<!-- Attaches -->
 								<span>
 									<span><fa :icon="faPaperclip"/> {{ file.attachedNoteIds ? file.attachedNoteIds.length : 0 }} Notes
