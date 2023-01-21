@@ -76,10 +76,26 @@ common:
     seconds_ago: "{}秒前"
     minutes_ago: "{}分前"
     hours_ago: "{}時間前"
+    day_ago: "昨日"
     days_ago: "{}日前"
+    week_ago: "先週"
     weeks_ago: "{}週間前"
+    month_ago: "先月"
     months_ago: "{}ヶ月前"
+    year_ago: "去年"
     years_ago: "{}年前"
+    seconds_after: "{}秒後"
+    minutes_after: "{}分後"
+    hours_after: "{}時間後"
+    day_after: "明日"
+    days_after: "{}日後"
+    week_after: "来週"
+    weeks_after: "{}週間後"
+    month_after: "来月"
+    months_after: "{}ヶ月後"
+    year_after: "来年"
+    years_after: "{}年後"
+
   month-and-day: "{month}月 {day}日"
 
   trash: "ゴミ箱"
@@ -533,6 +549,7 @@ common/views/pages/about.vue:
   popularReactions: "人気のリアクション"
   localActive: "今のユーザー数"
   globalActive: "今のユーザー数 (グローバル)"
+  relays: "参加中のリレー"
   reacters: "よくリアクションするユーザー"
 
 common/views/components/url-preview.vue:
@@ -1528,6 +1545,7 @@ admin/views/index.vue:
   users: "ユーザー"
   federation: "連合"
   relays: "リレー"
+  invitations: "招待"
   announcements: "お知らせ"
   hashtags: "ハッシュタグ"
   abuse: "スパム報告"
@@ -1535,6 +1553,24 @@ admin/views/index.vue:
   logs: "ログ"
   instanceblocks: "インスタンスブロック"
   back-to-misskey: "Misskeyに戻る"
+
+admin/views/invitations.vue:
+  addTitle: 招待コードの発行
+  addCount: 使用可能回数
+  addExpireSec: 有効期限
+  infinite: 無期限
+  day: 日
+  add: 発行
+  invitations: 発行済みの招待
+  code: コード
+  inviter: 招待者
+  createdAt: 作成
+  expiredAt: 期限
+  restCount: 残り回数
+  invitees: invitees
+  unknown: 不明
+  delete: 削除
+  more: もっと
 
 admin/views/dashboard.vue:
   dashboard: "ダッシュボード"

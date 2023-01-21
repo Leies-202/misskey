@@ -211,3 +211,15 @@ export type PackedNotification = {
 	reaction?: string | null;
 	choice?: number | null;
 };
+
+export type packedInvitation = {
+	id: string;
+	inviterId?: string;
+	inviteeIds?: string[];
+	createdAt: string;
+	expiredAt?: string;
+	code: string;
+	inviter?: ThinPackedUser | null;
+	invitees?: (ThinPackedUser | null)[];
+	restCount?: number;
+};

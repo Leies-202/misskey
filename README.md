@@ -33,4 +33,4 @@ https://github.com/Leies-202/misskey/commit/919129c952679fd8d10d866c6f11c6cc9ceb
 
 
 簡単なセットアップ方法はこの辺
-https://github.com/mei23/memo/blob/master/misskey/Setup-Ubuntu2004-Quick.md
+https://github.com/mei23/memo/blob/master/misskey/Setup-Meisskey-Quick.md
