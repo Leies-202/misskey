@@ -1,0 +1,16 @@
+{
+	id: 'oldspicy',
+	revision: 1,
+
+        name: 'スパイシーな音街-旧',
+        author: 'lei202',
+        desc: '音楽の街にスパイスを-旧バージョン',
+
+        base: 'dark',
+
+        vars: {
+                primary: 'rgb(48, 70, 230)',
+                secondary: 'rgb(40, 44, 55)',
+                text: 'rgb(214, 225, 35)',
+        },
+}

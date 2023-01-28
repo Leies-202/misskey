@@ -10,7 +10,7 @@
 
         vars: {
                 primary: 'rgb(48, 70, 230)',
-                secondary: 'rgb(40, 44, 55)',
+                secondary: 'rgb(25, 25, 25)',
                 text: 'rgb(214, 225, 35)',
         },
 }

@@ -17,6 +17,7 @@ export const lavenderTheme: Theme = require('../themes/lavender.json5');
 export const futureTheme: Theme = require('../themes/future.json5');
 export const halloweenTheme: Theme = require('../themes/halloween.json5');
 export const promoTheme: Theme = require('../themes/promo.json5');
+export const oldspicyTheme: Theme = require('../themes/oldspicy.json5');
 export const hikaemeTheme: Theme = require('../themes/hikaeme.json5');
 export const LadyTheme: Theme = require('../themes/lady.json5');
 export const halloweenLady: Theme = require('../themes/halloween-lady.json5');
