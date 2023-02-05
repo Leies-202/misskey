@@ -40,6 +40,11 @@ export async function scpaping(url: string, opts?: { lang?: string; }) {
 }
 
 async function getResponse(args: { url: string, method: 'GET' | 'POST', body?: string, headers: Record<string, string>, typeFilter?: RegExp }) {
+	const u = new URL(args.url);
+	if (!u.protocol.match(/^https?:$/) || u.hostname === 'unix') {
+		throw new StatusError('Invalid protocol', 400);
+	}
+
 	const timeout = RESPONSE_TIMEOUT;
 	const operationTimeout = OPERATION_TIMEOUT;
 

@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.628-m544-lei01",
+	"version": "10.102.629-m544",
 	"codename": "m544",
 	"repository": {
 		"type": "git",
@@ -151,7 +151,7 @@
 		"ts-loader": "9.4.2",
 		"ts-node": "10.9.1",
 		"twemoji-parser": "git+https://github.com/mei23/twemoji-parser.git#15.0.1",
-		"typescript": "4.9.4",
+		"typescript": "4.9.5",
 		"uuid": "9.0.0",
 		"v-animate-css": "0.0.5",
 		"v-debounce": "0.1.2",

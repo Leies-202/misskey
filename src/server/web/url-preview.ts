@@ -45,13 +45,19 @@ module.exports = async (ctx: Router.RouterContext) => {
 	}
 };
 
-function wrap(url: string): string {
-	return url != null
-		? url.match(/^https?:\/\//)
-			? `${config.url}/proxy/preview.jpg?${query({
-				url,
-				preview: '1'
-			})}`
-			: url
-		: null;
+function wrap(url: string | null): string | null {
+	if (url == null) return null;
+
+	if (url.match(/^https?:/)) {
+		return `${config.url}/proxy/preview.jpg?${query({
+			url,
+			preview: '1'
+		})}`;
+	}
+
+	if (url.match(/^data:/)) {
+		return url;
+	}
+
+	return null;
 }
