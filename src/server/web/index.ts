@@ -32,6 +32,19 @@ const env = process.env.NODE_ENV;
 const staticAssets = `${__dirname}/../../../assets/`;
 const client = `${__dirname}/../../client/`;
 
+const csp
+	= `base-uri 'none'; `
+	+ `default-src 'none'; `
+	+ `script-src 'self'; `
+	+ `img-src 'self' https: data: blob:; `
+	+ `media-src 'self' https:; `
+	+ `style-src 'self' 'unsafe-inline'; `
+	+ `font-src 'self'; `
+	+ `frame-src 'self' https:; `
+	+ `manifest-src 'self'; `
+	+ `connect-src 'self' data: blob: ${config.wsUrl}; `	// wssを指定しないとSafariで動かない https://github.com/w3c/webappsec-csp/issues/7#issuecomment-1086257826
+	+ `frame-ancestors 'none'`;
+
 // Init app
 const app = new Koa();
 
@@ -50,6 +63,7 @@ app.use(favicon(`${client}/assets/favicon.ico`));
 app.use(async (ctx, next) => {
 	// IFrameの中に入れられないようにする
 	ctx.set('X-Frame-Options', 'DENY');
+	ctx.set('Content-Security-Policy', csp);
 	await next();
 });
 
@@ -67,7 +81,7 @@ router.get('/static-assets/*', async ctx => {
 router.get('/assets/*', async ctx => {
 	await send(ctx as any, ctx.path, {
 		root: client,
-		maxage: ms('7 days'),
+		maxage: ctx.path === 'boot.js' ? ms('5m') : ms('7 days'),
 	});
 });
 
@@ -190,6 +204,7 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			: [];
 
 		await ctx.render('user', {
+			version: config.version,
 			initialMeta: htmlescape(builded),
 			user,
 			me,
@@ -282,6 +297,7 @@ router.get('/notes/:note', async (ctx, next) => {
 	const height = 255;
 
 	await ctx.render('note', {
+		version: config.version,
 		initialMeta: htmlescape(builded),
 		note: _note,
 		summary: getNoteSummary(_note),
@@ -295,7 +311,6 @@ router.get('/notes/:note', async (ctx, next) => {
 	});
 
 	ctx.set('Cache-Control', 'public, max-age=180');
-
 
 	return;
 });
@@ -358,6 +373,7 @@ router.get('/@:user/pages/:page', async ctx => {
 		const meta = await fetchMeta();
 		const builded = await buildMeta(meta, false);
 		await ctx.render('page', {
+			version: config.version,
 			initialMeta: htmlescape(builded),
 			page: _page,
 			instanceName: meta.name || 'Misskey',
@@ -438,6 +454,7 @@ router.get('*', async ctx => {
 	const noindex = ctx.path.match(/^[/](search|tags[/]|explore|featured)/);
 
 	await ctx.render('base', {
+		version: config.version,
 		initialMeta: htmlescape(builded),
 		img: meta.bannerUrl,
 		title: meta.name || 'Misskey',

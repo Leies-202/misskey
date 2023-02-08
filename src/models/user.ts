@@ -23,6 +23,7 @@ import { awaitAll } from '../prelude/await-all';
 import { oidEquals } from '../prelude/oid';
 import { PackedUser, PackedNote } from './packed-schemas';
 import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
+import { cleanUrl } from '../misc/clean-url';
 
 const User = db.get<IUser>('users');
 
@@ -457,7 +458,7 @@ export async function pack(
 
 		avatarUrl: db.avatarId ? DriveFile.findOne({
 			_id: db.avatarId
-		}).then(file => getDriveFileUrl(file, true) || `${config.driveUrl}/default-avatar.jpg`) : `${config.driveUrl}/default-avatar.jpg`,
+		}).then(file => cleanUrl(getDriveFileUrl(file, true)) || `${config.driveUrl}/default-avatar.jpg`) : `${config.driveUrl}/default-avatar.jpg`,
 		avatarColor: null, // 後方互換性のため
 
 		isAdmin: !!db.isAdmin,
@@ -477,15 +478,15 @@ export async function pack(
 		avoidSearchIndex: !!db.avoidSearchIndex,
 		tags: db.tags || [],
 
-		url: isRemoteUser(db) ? db.url || null : null,
-		uri: isRemoteUser(db) ? db.uri || null : null,
+		url: isRemoteUser(db) ? cleanUrl(db.url) || null : null,
+		uri: isRemoteUser(db) ? cleanUrl(db.uri) || null : null,
 
 		...(opts.detail ? {
 			createdAt: toISODateOrNull(db.createdAt),
 			updatedAt: toISODateOrNull(db.updatedAt),
 			bannerUrl: db.bannerUrl ? DriveFile.findOne({
 				_id: db.bannerId
-			}).then(file => getDriveFileUrl(file, false) || null) : null,
+			}).then(file => cleanUrl(getDriveFileUrl(file, false)) || null) : null,
 			bannerColor: null, // 後方互換性のため
 			isLocked: !!db.isLocked,
 
@@ -543,7 +544,7 @@ export async function pack(
 			hideFollows: db.hideFollows || '',
 
 			wallpaperId: toOidStringOrNull(db.wallpaperId),
-			wallpaperUrl: db.wallpaperUrl || null,
+			wallpaperUrl: cleanUrl(db.wallpaperUrl) || null,
 
 			hasUnreadMessagingMessage: !!db.hasUnreadMessagingMessage,
 			hasUnreadNotification: !!db.hasUnreadNotification,

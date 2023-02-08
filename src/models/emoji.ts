@@ -4,6 +4,7 @@ import * as deepcopy from 'deepcopy';
 import isObjectid from '../misc/is-objectid';
 import { toApHost } from '../misc/convert-host';
 import { getEmojiUrl } from '../misc/pack-emojis';
+import { cleanUrl } from '../misc/clean-url';
 
 const Emoji = db.get<IEmoji>('emoji');
 Emoji.createIndex('name');
@@ -56,7 +57,7 @@ export async function packXEmoji(emoji: any): Promise<IXEmoji> {
 	}
 
 	// リモートは /files/ で Proxyさせる
-	const url = getEmojiUrl(emoji)
+	const url = cleanUrl(getEmojiUrl(emoji));
 
 	const name = _emoji.name + (_emoji.host ? `@${toApHost(_emoji.host)}` : '');
 

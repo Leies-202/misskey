@@ -4,6 +4,7 @@ overrides:
   source-map: ^0.7.4
 
 specifiers:
+  '@braintree/sanitize-url': 6.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -184,7 +185,7 @@ specifiers:
   twemoji-parser: git+https://github.com/mei23/twemoji-parser.git#15.0.1
   typescript: 4.9.5
   uuid: 9.0.0
-  v-animate-css: 0.0.5
+  v-animate-css: 0.0.6
   v-debounce: 0.1.2
   vue: 2.7.14
   vue-color: 2.8.1
@@ -210,6 +211,7 @@ specifiers:
   xmlbuilder: 15.1.1
 
 dependencies:
+  '@braintree/sanitize-url': 6.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -335,7 +337,7 @@ dependencies:
   twemoji-parser: github.com/mei23/twemoji-parser/75831bfddb415cefc1e89ac5232e883daf91a624
   typescript: 4.9.5
   uuid: 9.0.0
-  v-animate-css: 0.0.5
+  v-animate-css: 0.0.6
   v-debounce: 0.1.2
   vue: 2.7.14
   vue-color: 2.8.1
@@ -464,6 +466,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@braintree/sanitize-url/6.0.2:
+    resolution: {integrity: sha512-Tbsj02wXCbqGmzdnXNk0SOF19ChhRU70BsroIi4Pm6Ehp56in6vch94mfbdQ17DozxkL3BAVjbZ4Qc1a0HFRAg==}
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:
@@ -9770,8 +9776,8 @@ packages:
     hasBin: true
     dev: false
 
-  /v-animate-css/0.0.5:
-    resolution: {integrity: sha512-FML26yVYX3hCTWTKioTNAIXjaWIFWa1mSczb92cLkMYI9QI6uRacKx7QnBNB17IOFLFEv8mc14aawe2In/ba1w==}
+  /v-animate-css/0.0.6:
+    resolution: {integrity: sha512-xzuWuavsB1LcaUy418QjuwoJBNKqe8Pp8Z/WdDjsVyy393DV+xL9liquCOwOh6qe9duHJrdiQFXsJFKnpKBjVA==}
     dependencies:
       scrollmonitor: 1.2.11
     dev: false

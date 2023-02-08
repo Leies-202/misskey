@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "10.102.629-m544",
+	"version": "10.102.630-m544",
 	"codename": "m544",
 	"repository": {
 		"type": "git",
@@ -28,6 +28,7 @@
 		"source-map": "^0.7.4"
 	},
 	"dependencies": {
+		"@braintree/sanitize-url": "6.0.2",
 		"@fortawesome/fontawesome-svg-core": "1.2.36",
 		"@fortawesome/free-brands-svg-icons": "5.15.4",
 		"@fortawesome/free-regular-svg-icons": "5.15.4",
@@ -153,7 +154,7 @@
 		"twemoji-parser": "git+https://github.com/mei23/twemoji-parser.git#15.0.1",
 		"typescript": "4.9.5",
 		"uuid": "9.0.0",
-		"v-animate-css": "0.0.5",
+		"v-animate-css": "0.0.6",
 		"v-debounce": "0.1.2",
 		"vue": "2.7.14",
 		"vue-color": "2.8.1",
