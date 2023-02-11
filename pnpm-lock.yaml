@@ -4,7 +4,6 @@ overrides:
   source-map: ^0.7.4
 
 specifiers:
-  '@braintree/sanitize-url': 6.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -211,7 +210,6 @@ specifiers:
   xmlbuilder: 15.1.1
 
 dependencies:
-  '@braintree/sanitize-url': 6.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-regular-svg-icons': 5.15.4
@@ -466,10 +464,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@braintree/sanitize-url/6.0.2:
-    resolution: {integrity: sha512-Tbsj02wXCbqGmzdnXNk0SOF19ChhRU70BsroIi4Pm6Ehp56in6vch94mfbdQ17DozxkL3BAVjbZ4Qc1a0HFRAg==}
     dev: false
 
   /@cspotcode/source-map-support/0.8.1:

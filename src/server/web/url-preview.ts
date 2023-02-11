@@ -10,6 +10,7 @@ import { query } from '../../prelude/url';
 import { downloadUrl } from '../../misc/download-url';
 import { detectImageSize } from '../../misc/get-file-info';
 import { convertToWebp } from '../../services/drive/image-processor';
+import { sanitizeUrl } from '../../misc/sanitize-url';
 
 const logger = new Logger('url-preview');
 
@@ -35,6 +36,9 @@ module.exports = async (ctx: Router.RouterContext) => {
 
 		summary.icon = await wrap(summary.icon, 32);
 		summary.thumbnail = await wrap(summary.thumbnail, 128);
+
+		if (summary.player) summary.player.url = sanitizeUrl(summary.player.url);
+		summary.url = sanitizeUrl(summary.url);
 
 		// Cache 7days
 		ctx.set('Cache-Control', 'max-age=604800');

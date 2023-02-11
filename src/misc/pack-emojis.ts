@@ -6,7 +6,7 @@ import { isSelfHost } from './convert-host';
 import getDriveFileUrl from './get-drive-file-url';
 import DriveFile from '../models/drive-file';
 import { query } from '../prelude/url';
-import { cleanUrl } from './clean-url';
+import { sanitizeUrl } from './sanitize-url';
 
 type IREmoji = {
 	/**
@@ -60,7 +60,7 @@ export async function packAvatarEmoji(str: string, ownerHost: string | null): Pr
 
 	return {
 		name: str,
-		url: cleanUrl((user && user.avatarId) ? getDriveFileUrl(await DriveFile.findOne({ _id: user.avatarId }), true) : `${config.driveUrl}/default-avatar.jpg`),
+		url: sanitizeUrl((user && user.avatarId) ? getDriveFileUrl(await DriveFile.findOne({ _id: user.avatarId }), true) : `${config.driveUrl}/default-avatar.jpg`),
 		host,
 		resolvable,
 	} as IREmoji;
@@ -101,7 +101,7 @@ export async function packCustomEmoji(str: string, ownerHost: string | null): Pr
 
 	const e = {
 		name: str,
-		url: cleanUrl(getEmojiUrl(emoji)),
+		url: sanitizeUrl(getEmojiUrl(emoji)),
 		host: host,
 		resolvable: resolvable,
 	} as IREmoji;
