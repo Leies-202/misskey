@@ -25,7 +25,7 @@ import { getJSONFeed } from './feed/json';
 import { buildMeta } from '../../misc/build-meta';
 import Page, { packPage } from '../../models/page';
 import { fromHtml } from '../../mfm/from-html';
-import rndstr from 'rndstr';
+import * as crypto from 'crypto';
 const htmlescape = require('htmlescape');
 
 const env = process.env.NODE_ENV;
@@ -34,7 +34,8 @@ const staticAssets = `${__dirname}/../../../assets/`;
 const client = `${__dirname}/../../client/`;
 
 export function genCsp() {
-	const nonce = rndstr(16);
+	const nonce = crypto.randomBytes(16).toString('base64');
+
 	const csp
 	= `base-uri 'none'; `
 	+ `default-src 'none'; `
@@ -64,13 +65,6 @@ app.use(views(__dirname + '/views', {
 
 // Serve favicon
 app.use(favicon(`${client}/assets/favicon.ico`));
-
-// Common request handler
-app.use(async (ctx, next) => {
-	// IFrameの中に入れられないようにする
-	ctx.set('X-Frame-Options', 'DENY');
-	await next();
-});
 
 // Init router
 const router = new Router();

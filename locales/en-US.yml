@@ -1392,7 +1392,7 @@ admin/views/index.vue:
   abuse: "Abuse"
   queue: "Job Queue"
   logs: "Logs"
-  instanceblocks: "Instance blocks"
+  instancemoderation: "Instance moderation"
   back-to-misskey: "Back to Misskey"
 admin/views/invitations.vue:
   addTitle: "New invitation"
@@ -1694,8 +1694,9 @@ admin/views/federation.vue:
   latest-request-received-at: "Last request received at"
   remove-all-following: "Withold all followers"
   remove-all-following-info: "Unfollow all accounts from {host}. Please run this if the instance no longer exists."
-  block: "Block"
+  ignore: "Ignore instance"
   marked-as-closed: "Marked as closed"
+  flag-info: "Ignore stops sending, receiving, and fetching. Close only stops sending. The flag is automatically updated according to the communication status."
   lookup: "Look up"
   instances: "Federated"
   instance-not-registered: "The instance has not been discovered"
@@ -1720,7 +1721,7 @@ admin/views/federation.vue:
   state: "Sort"
   states:
     all: "All"
-    blocked: "Blocked"
+    ignored: "Ignored"
     not-responding: "Without response"
     marked-as-closed: "Marked as closed"
   result-is-truncated: "Displaying the top {n} items."
@@ -1742,8 +1743,8 @@ admin/views/federation.vue:
     day: "Daily"
 
 admin/views/instanceblocks.vue:
-  instanceblocks: "Instance block"
-  blockedInstances-info: "One host per line. You can use /RegExp/."
+  ignoredInstances: "Ignored instances"
+  ignoredInstances-info: "One host per line. You can use /RegExp/."
 
 admin/views/relay.vue:
   add-relay: "Add relay"
