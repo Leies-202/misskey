@@ -155,6 +155,12 @@ export default (opts: Opts = {}) => ({
 			});
 		},
 
+		directRenote() {
+			this.$root.api('notes/create', {
+				renoteId: this.appearNote.id
+			});
+		},
+
 		undoRenote() {
 			this.$root.api('notes/delete', {
 				noteId: this.appearNote.myRenoteId

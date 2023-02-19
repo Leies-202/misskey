@@ -1265,12 +1265,14 @@ desktop/views/components/note-detail.vue:
   location: "位置情報"
   reply: "返信"
   renote: "Renote"
+  quote: "引用"
   add-reaction: "リアクション"
   undo-reaction: "リアクション解除"
 
 desktop/views/components/note.vue:
   reply: "返信"
   renote: "Renote"
+  quote: "引用"
   add-reaction: "リアクション"
   undo-reaction: "リアクション解除"
   detail: "詳細"
@@ -1906,8 +1908,13 @@ admin/views/federation.vue:
     day: "1日ごと"
 
 admin/views/instanceblocks.vue:
+  instancemoderation: インスタンスモデレーション
   ignoredInstances: "インスタンスの無視"
-  ignoredInstances-info: "1行に1ホスト記述します。/正規表現/ が使えます。"
+  ignoredInstances-info: "送受信と取得を行わないインスタンス。1行に1ホスト記述します。/正規表現/ が使えます。"
+  selfSilencedInstances: "セルフサイレンスするインスタンス"
+  selfSilencedInstances-info: "最大公開範囲ホームで配信するインスタンス。1行に1ホスト記述します。/正規表現/ が使えます。"
+  exposeHome: 取得されるときの最大公開範囲はホームにする
+  exposeHome-info: "フォロワーのいないインスタンスなどから投稿を取得されるときの最大公開範囲をホームにします。"
 
 admin/views/relay.vue:
   add-relay: "リレーの追加"
