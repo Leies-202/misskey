@@ -140,6 +140,8 @@ common:
   poll_finished: "Poll finished"
   flush: "Clear cache"
   signinOrUsePostUrl: "To do so, either signin or put the URL into your instance's search box and do it."
+  renoted: "Renoted"
+
   permissions:
     "read:account": "View your account information"
     "write:account": "Edit your account information"
@@ -1322,6 +1324,7 @@ desktop/views/components/timeline.vue:
   hybrid: "Social"
   hybrid-desc: "Home+Local"
   global: "Global"
+  another: "Another"
   reacted: "Reacted"
   mentions: "Mentions"
   messages: "Direct posts"
@@ -1376,10 +1379,8 @@ desktop/views/home/featured.vue:
   all: "All"
   excludeNsfw: "Exclude NSFW"
   excludeSfw: "NSFW only"
-  days: "Duration"
-  hour: "hours"
-  day: "days"
-  years: "years"
+  minScore: "Min score"
+
 admin/views/index.vue:
   dashboard: "Dashboard"
   instance: "Instance"
@@ -1954,10 +1955,7 @@ mobile/views/pages/featured.vue:
   all: "All"
   excludeNsfw: "Exclude NSFW"
   excludeSfw: "NSFW only"
-  days: "Duration"
-  hour: "hours"
-  day: "days"
-  years: "years"
+  minScore: "Min score"
 mobile/views/pages/followers.vue:
   followers-of: "{name}'s followers"
 mobile/views/pages/following.vue:
@@ -1968,6 +1966,7 @@ mobile/views/pages/home.vue:
   locao: "Locao"
   hybrid: "Social"
   global: "Global"
+  another: "Another"
   reacted: "Reacted"
   mentions: "Mentions"
   messages: "Direct posts"
@@ -2030,6 +2029,7 @@ deck:
   hybrid: "Social"
   hashtag: "Hashtag"
   global: "Global"
+  another: "Another"
   reacted: "Reacted"
   mentions: "Mentions"
   direct: "Direct posts"

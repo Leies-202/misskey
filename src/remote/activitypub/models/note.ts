@@ -229,7 +229,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 	const poll = await extractPollFromQuestion(note, resolver).catch(() => undefined);
 
 	// ユーザーの情報が古かったらついでに更新しておく
-	if (actor.lastFetchedAt == null || Date.now() - actor.lastFetchedAt.getTime() > 1000 * 60 * 60 * 24) {
+	if (actor.lastFetchedAt == null || Date.now() - actor.lastFetchedAt.getTime() > 1000 * 60 * 60 * 6) {
 		updatePerson(actor.uri);
 	}
 

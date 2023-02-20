@@ -158,6 +158,12 @@ export default (opts: Opts = {}) => ({
 		directRenote() {
 			this.$root.api('notes/create', {
 				renoteId: this.appearNote.id
+			}).then(() => {
+				this.$root.dialog({
+					type: 'success',
+					splash: true,
+					text: this.$t('@.renoted')
+				});
 			});
 		},
 
@@ -210,7 +216,11 @@ export default (opts: Opts = {}) => ({
 			this.$root.api('notes/favorites/create', {
 				noteId: this.appearNote.id
 			}).then(() => {
-				this.$notify(this.$t('@.favorited'));
+				this.$root.dialog({
+					type: 'success',
+					splash: true,
+					text: this.$t('@.favorited')
+				});
 			});
 		},
 

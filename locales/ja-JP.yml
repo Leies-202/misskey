@@ -142,6 +142,7 @@ common:
   poll_finished: "アンケートが完了しました"
   flush: "キャッシュをクリア"
   signinOrUsePostUrl: "それをするにはサインインするかURLをあなたのインスタンスの検索ボックスに入れてやっていってください。"
+  renoted: "Renoteしました"
 
   permissions:
     "read:account": "アカウントの情報を見る"
@@ -1445,6 +1446,7 @@ desktop/views/components/timeline.vue:
   hybrid: "ソーシャル"
   hybrid-desc: "ホーム+ローカル"
   global: "グローバル"
+  another: "アナザー"
   reacted: "リアクション"
   mentions: "あなた宛て"
   messages: "ダイレクト投稿"
@@ -1514,10 +1516,7 @@ desktop/views/home/featured.vue:
   all: "すべて"
   excludeNsfw: "閲覧注意を除く"
   excludeSfw: "閲覧注意のみ"
-  days: "集計期間"
-  hour: "時間"
-  day: "日間"
-  years: "年間"
+  minScore: "最低スコア"
 
 admin/views/index.vue:
   dashboard: "ダッシュボード"
@@ -2155,10 +2154,7 @@ mobile/views/pages/featured.vue:
   all: "すべて"
   excludeNsfw: "閲覧注意を除く"
   excludeSfw: "閲覧注意のみ"
-  days: "集計期間"
-  hour: "時間"
-  day: "日間"
-  years: "年間"
+  minScore: "最低スコア"
 
 mobile/views/pages/followers.vue:
   followers-of: "{name}のフォロワー"
@@ -2172,6 +2168,7 @@ mobile/views/pages/home.vue:
   locao: "ローカオ"
   hybrid: "ソーシャル"
   global: "グローバル"
+  another: "アナザー"
   reacted: "リアクション"
   mentions: "あなた宛て"
   messages: "ダイレクト投稿"
@@ -2248,6 +2245,7 @@ deck:
   hybrid: "ソーシャル"
   hashtag: "ハッシュタグ"
   global: "グローバル"
+  another: "アナザー"
   reacted: "リアクション"
   mentions: "あなた宛て"
   direct: "ダイレクト投稿"

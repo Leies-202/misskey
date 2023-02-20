@@ -156,6 +156,7 @@ export default [
   "mute/list",
   "my/apps",
   "notes",
+  "notes/another-timeline",
   "notes/children",
   "notes/conversation",
   "notes/create",

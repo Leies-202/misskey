@@ -76,6 +76,7 @@ export default Vue.extend({
 				case 'hybrid': return this.$root.stream.connectToChannel('hybridTimeline', { includeForeignReply: this.$store.state.settings.includeForeignReply });
 				case 'hot': return this.$root.stream.useSharedConnection('hotTimeline');
 				case 'global': return this.$root.stream.useSharedConnection('globalTimeline');
+				case 'another': return this.$root.stream.useSharedConnection('anotherTimeline');
 			}
 		},
 
@@ -87,6 +88,8 @@ export default Vue.extend({
 				case 'hybrid': return 'notes/hybrid-timeline';
 				case 'hot': return 'notes/hot-timeline';
 				case 'global': return 'notes/global-timeline';
+				case 'another': return 'notes/another-timeline';
+				case 'another': return 'notes/another-timeline';
 			}
 		},
 	},
