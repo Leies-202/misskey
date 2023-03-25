@@ -91,8 +91,8 @@ export type PackedUser = ThinPackedUser & {
 		name: string;
 		value: string;
 	}[];
-	followersCount?: number;
-	followingCount?: number;
+	followersCount?: number | null;
+	followingCount?: number | null;
 	notesCount?: number;
 	pinnedNoteIds?: string[];
 	pinnedNotes?: PackedNote[]
@@ -126,6 +126,7 @@ export type PackedUser = ThinPackedUser & {
 	refuseFollow?: boolean;
 	autoAcceptFollowed?: boolean;
 	isExplorable?: boolean;
+	searchableBy?: string;
 	hideFollows?: string;
 	wallpaperId?: string | null;
 	wallpaperUrl?: string | null;

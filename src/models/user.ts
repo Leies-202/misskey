@@ -141,6 +141,8 @@ type IUserBase = {
 	 */
 	isExplorable?: boolean;
 
+	searchableBy?: 'public' | 'none' | null;
+
 	/**
 	 * このアカウントに届いているフォローリクエストの数
 	 */
@@ -541,6 +543,7 @@ export async function pack(
 			refuseFollow: !!db.refuseFollow,
 			autoAcceptFollowed: !!db.autoAcceptFollowed,
 			isExplorable: !!db.isExplorable,
+			searchableBy: db.searchableBy || 'public',
 			hideFollows: db.hideFollows || '',
 
 			wallpaperId: toOidStringOrNull(db.wallpaperId),
