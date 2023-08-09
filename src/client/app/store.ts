@@ -55,7 +55,7 @@ const defaultDeviceSettings = Object.assign({
 	reduceMotion: false,
 	visibilityColoring: 'left',
 	customEmojiStyle: 'stamp',
-	darkmode: false,
+	darkmode: true,
 	darkTheme: 'dark',
 	lightTheme: 'light',
 	themes: [],

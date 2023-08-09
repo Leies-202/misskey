@@ -15,32 +15,12 @@
 				<router-link class="explore" to="/explore">{{ $t('@.explore') }}</router-link>
 			</div>
 		</div>
-		<div class="tl">
-			<mk-welcome-timeline/>
-		</div>
-		<div class="hashtags">
-			<mk-tag-cloud/>
-		</div>
-		<div class="photos">
-			<div v-for="photo in photos" :style="`background-image: url(${photo.thumbnailUrl})`"></div>
-		</div>
-		<div class="stats" v-if="stats">
-			<span><fa icon="user"/> {{ stats.originalUsersCount | number }}</span>
-			<span><fa icon="pencil-alt"/> {{ stats.originalNotesCount | number }}</span>
-		</div>
 		<div class="announcements" v-if="announcements && announcements.length > 0">
 			<article v-for="(announcement, i) in announcements" :key="i">
 				<span class="title" v-html="announcement.title"></span>
 				<div v-html="announcement.text"></div>
 			</article>
 		</div>
-		<div class="info" v-if="meta">
-			<p>Version: <b>{{ meta.version }}</b></p>
-			<p>Maintainer: <b><a :href="'mailto:' + meta.maintainer.email" target="_blank">{{ meta.maintainer.name }}</a></b></p>
-		</div>
-		<footer>
-			<small>{{ copyright }}</small>
-		</footer>
 	</div>
 </div>
 </template>
@@ -48,7 +28,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { constants, host } from '../../../config';
+import { host } from '../../../config';
 import { concat } from '../../../../../prelude/array';
 import { toUnicode } from 'punycode/';
 
@@ -57,7 +37,6 @@ export default Vue.extend({
 	data() {
 		return {
 			meta: null,
-			copyright: constants.copyright,
 			stats: null,
 			banner: null,
 			host: toUnicode(host),
@@ -151,43 +130,6 @@ export default Vue.extend({
 			> .explore
 				margin 0.5em
 
-		> .tl
-			margin 16px 0
-
-			> *
-				max-height 300px
-				border-radius 6px
-				overflow auto
-				-webkit-overflow-scrolling touch
-
-		> .hashtags
-			padding 0 8px
-			height 200px
-
-		> .photos
-			display grid
-			grid-template-rows 1fr 1fr 1fr
-			grid-template-columns 1fr 1fr
-			gap 8px
-			height 300px
-			margin-top 16px
-
-			> div
-				border-radius 4px
-				background-position center center
-				background-size cover
-
-		> .stats
-			margin 16px 0
-			padding 8px
-			font-size 14px
-			color var(--text)
-			background rgba(#000, 0.1)
-			border-radius 6px
-
-			> *
-				margin 0 8px
-
 		> .announcements
 			margin 16px 0
 
@@ -241,15 +183,6 @@ export default Vue.extend({
 							width 100%
 							height 120px
 							object-fit cover
-
-		> .info
-			padding 16px 0
-			border solid 2px rgba(0, 0, 0, 0.1)
-			border-radius 8px
-			color var(--text)
-
-			> *
-				margin 0 16px
 
 		> footer
 			text-align center
