@@ -116,6 +116,8 @@ common:
   mobile-mode: 'モバイル版'
   empty: 'ありません！'
   edit: '編集'
+  edit2: '簡易編集'
+  edited: '編集済み'
   aboutInstance: "このインスタンスについて"
   favoriteReactions: "よくするリアクション"
   mostReacteds: "よくされるリアクション"
@@ -702,6 +704,7 @@ common/views/components/note-menu.vue:
   deleteDriveYes: "ドライブのファイルも削除する"
   edit: "編集"
   edit-confirm: "この投稿を編集しますか？古い投稿は削除されます。"
+  edit2-confirm: "簡易編集は履歴が残ります、残したくない場合は普通の編集を使用してください。簡易編集をしますか？"
   remote: "投稿元で見る"
   pin-limit-exceeded: "これ以上ピン留めできません。"
   report: "通報"
@@ -1831,6 +1834,7 @@ admin/views/federation.vue:
   following: "フォロー中"
   followers: "フォロワー"
   caught-at: "登録日時"
+  infoUpdatedAt: "情報更新日時"
   status: "ステータス"
   activeHalfyear: "Users 6m"
   activeMonth: "Users 1m"
@@ -1848,6 +1852,8 @@ admin/views/federation.vue:
   sorts:
     caughtAtAsc: "登録日時が古い順"
     caughtAtDesc: "登録日時が新しい順"
+    infoUpdatedAtAsc: "情報更新日時が古い順"
+    infoUpdatedAtDesc: "情報更新日時が新しい順"
     lastCommunicatedAtAsc: "最後にやり取りした日時が古い順"
     lastCommunicatedAtDesc: "最後にやり取りした日時が新しい順"
     notesAsc: "投稿が少ない順"

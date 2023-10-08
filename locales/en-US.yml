@@ -114,6 +114,8 @@ common:
   mobile-mode: 'Mobile mode'
   empty: 'Empty'
   edit: 'Edit'
+  edit2: 'Quick edit'
+  edited: 'Edited'
   aboutInstance: "About this instance"
   favoriteReactions: "Favorite reactions"
   mostReacteds: "Most reacteds"
@@ -492,7 +494,7 @@ common/views/pages/about.vue:
   about: "About {host}"
   basic: "Basic"
   maintainerName: "Administrator"
-  maintainerEmail: "Contanct"
+  maintainerEmail: "Contact"
   stats: "Statistics"
   users: "Users"
   notes: "Posts"
@@ -660,6 +662,7 @@ common/views/components/note-menu.vue:
   deleteDriveYes: "Delete drive files too"
   edit: "Edit"
   edit-confirm: "Are you sure you want to edit this post? Old post will be deleted."
+  edit2-confirm: "Quick edit leaves a history. if you don't want to keep it, use normal editing. Do you want to quick edit?"
   remote: "Show original note"
   report: "Report"
   report-abuse-detail: "What kind of nuisance did you encounter?"
@@ -1670,6 +1673,7 @@ admin/views/federation.vue:
   following: "Following"
   followers: "Followers"
   caught-at: "Created at"
+  infoUpdatedAt: "Info updated at"
   status: "Statuses"
   latest-request-sent-at: "Time of last request sent"
   latest-request-received-at: "Last request received at"
@@ -1685,6 +1689,8 @@ admin/views/federation.vue:
   sorts:
     caughtAtAsc: "Date of discovery (Ascending)"
     caughtAtDesc: "Date of discovery (Descending)"
+    infoUpdatedAtAsc: "Date of info updated (Ascending)"
+    infoUpdatedAtDesc: "Date of info updated (Descending)"
     lastCommunicatedAtAsc: "The date and time of the older interactions"
     lastCommunicatedAtDesc: "The date and time of the newer interactions"
     notesAsc: "Least Notes posted"
