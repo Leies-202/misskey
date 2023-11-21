@@ -132,6 +132,8 @@ const angleDb: MfmDef[] = [
 ];
 
 const fnDb: MfmDef[] = [
+	{ name: 'ruby', head: '$[ruby ', tail: '文字 ルビ]', desc: '$[ruby 文字 ルビ]' },
+
 	{ name: 'jelly', head: '$[jelly ', tail: ']', desc: '$[jelly 🍮]' },
 	{ name: 'tada', head: '$[tada ', tail: ']', desc: '$[tada 🍮]' },
 	{ name: 'jump', head: '$[jump ', tail: ']', desc: '$[jump 🍮]' },
