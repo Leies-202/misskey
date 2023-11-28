@@ -41,39 +41,24 @@ const router = new Router();
 async function inbox(ctx: Router.RouterContext) {
 	if (config.disableFederation) ctx.throw(404);
 
-	// parse body
-	const text = await coBody.text(ctx);
-
-	// check length
-	if (text.length > 65535) {
-		ctx.status = 413;
+	if (ctx.req.headers.host !== config.host) {
+		ctx.status = 400;
 		return;
 	}
 
-	// to json
-	const json = await JSON.parse(text);
-	ctx.request.body = json;
+	// parse body
+	const { parsed, raw } = await coBody.json(ctx, {
+		limit: '64kb',
+		returnRawBody: true,
+	});
+	ctx.request.body = parsed;
 
 	let signature: httpSignature.IParsedSignature;
 
 	try {
-		signature = httpSignature.parseRequest(ctx.req, { 'headers': [] });
+		signature = httpSignature.parseRequest(ctx.req, { 'headers': ['(request-target)', 'digest', 'host', 'date'] });
 	} catch (e) {
 		logger.warn(`inbox: signature parse error: ${inspect(e)}`);
-		ctx.status = 401;
-		return;
-	}
-
-	// 署名必須ヘッダーの検証
-	if (!['host', 'digest'].every(h => signature.params.headers.includes(h))) {
-		logger.warn(`inbox: missing required header`);
-		ctx.status = 401;
-		return;
-	}
-
-	// Hostヘッダーの検証
-	if (ctx.headers.host !== config.host) {
-		logger.warn(`inbox: host headr missmatch`);
 		ctx.status = 401;
 		return;
 	}
@@ -99,13 +84,13 @@ async function inbox(ctx: Router.RouterContext) {
 	const digestAlgo = match[1];
 	const digestExpected = match[2];
 
-	if (digestAlgo !== 'SHA-256') {	// TODO: lc?
+	if (digestAlgo.toUpperCase() !== 'SHA-256') {
 		logger.warn(`inbox: unsupported algorithm`);
 		ctx.status = 401;
 		return;
 	}
 
-	const digestActual = crypto.createHash('sha256').update(text).digest('base64')
+	const digestActual = crypto.createHash('sha256').update(raw).digest('base64');
 
 	if (digestExpected !== digestActual) {
 		logger.warn(`inbox: digest missmatch`);
