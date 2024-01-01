@@ -3,7 +3,6 @@ import ID, { transform } from '../../../../misc/cafy-id';
 import define from '../../define';
 import User from '../../../../models/user';
 import AbuseUserReport from '../../../../models/abuse-user-report';
-import { publishAdminStream } from '../../../../services/stream';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 
@@ -86,25 +85,4 @@ export default define(meta, async (ps, me) => {
 		noteIds: ps.noteIds,
 		comment: ps.comment
 	});
-
-	// Publish event to moderators
-	setTimeout(async () => {
-		const moderators = await User.find({
-			$or: [{
-				isAdmin: true
-			}, {
-				isModerator: true
-			}]
-		});
-
-		for (const moderator of moderators) {
-			publishAdminStream(moderator._id, 'newAbuseUserReport', {
-				id: report._id,
-				userId: report.userId,
-				reporterId: report.reporterId,
-				noteIds: report.noteIds,
-				comment: report.comment
-			});
-		}
-	}, 1);
 });

@@ -31,6 +31,11 @@ https://github.com/Leies-202/misskey/commit/919129c952679fd8d10d866c6f11c6cc9ceb
 
 以上
 
-
-簡単なセットアップ方法はこの辺
+## Setup?
+簡単なセットアップ方法はこの辺  
 https://github.com/mei23/memo/blob/master/misskey/Setup-Meisskey-Quick.md
+
+## Vulnerabilities?
+脆弱性を見つけたらこちら  
+If you find any vulnerabilities, please report them here.  
+https://github.com/mei23/misskey/security/advisories/new
