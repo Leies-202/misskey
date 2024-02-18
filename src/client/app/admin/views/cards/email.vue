@@ -57,8 +57,6 @@ export default defineComponent({
 			smtpPass: null,
 			smtpAuth: false,
 
-			maintainerEmail: null,
-
 			// icons アイコンを追加したらここをいじる 2/2
 			farEnvelope,
 		};
@@ -82,8 +80,6 @@ export default defineComponent({
 				this.smtpUser = meta.smtpUser;
 				this.smtpPass = meta.smtpPass;
 				this.smtpAuth = meta.smtpUser != null && meta.smtpUser !== '';
-
-				this.maintainerEmail = meta.maintainer.email;
 			});
 		},
 
@@ -120,8 +116,16 @@ export default defineComponent({
 		},
 
 		async testEmail() {
+			const { canceled, result } = await this.$root.dialog({
+				title: 'To',
+				input: {
+					type: 'text'
+				}
+			});
+			if (canceled) return;
+
 			this.$root.api('admin/send-email', {
-				to: this.maintainerEmail,
+				to: result,
 				subject: 'Test email',
 				text: 'Na'
 			}).then((e: Error) => {
