@@ -21,7 +21,7 @@ const path = process.env.NODE_ENV == 'test'
 	: `${dir}/default.yml`;
 
 export default function load() {
-	// eslint-disable-next-line node/no-sync
+	// eslint-disable-next-line n/no-sync
 	const config = yaml.load(fs.readFileSync(path, 'utf-8')) as Source;
 
 	const mixin = {} as Mixin;
@@ -32,7 +32,7 @@ export default function load() {
 
 	config.port = config.port || parseInt(process.env.PORT || '', 10);
 
-	config.proxyRemoteFiles = !config.proxyRemoteFiles === false;
+	config.proxyRemoteFiles = typeof config.proxyRemoteFiles === 'boolean' ? config.proxyRemoteFiles : true;
 
 	const icons = {
 		favicon: {
