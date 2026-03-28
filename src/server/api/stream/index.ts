@@ -13,6 +13,8 @@ import { EventEmitter } from 'events';
 import { ApiError } from '../error';
 import { getHideUserIdsById } from '../common/get-hide-users';
 import { PubSubMessage, NoteStreamBody } from '../../../services/stream';
+import { pack } from '../../../models/note';
+import { oidEquals } from '../../../prelude/oid';
 
 /**
  * Main stream connection
@@ -106,8 +108,11 @@ export default class Connection {
 	 * 投稿購読要求時
 	 */
 	@autobind
-	private onSubscribeNote(payload: any) {
+	private async onSubscribeNote(payload: any) {
 		if (!payload.id) return;
+
+		const packed = await pack(payload.id, this.user);
+		if (packed?.isHidden) return;
 
 		if (this.subscribingNotes[payload.id] == null) {
 			this.subscribingNotes[payload.id] = 0;
@@ -140,10 +145,17 @@ export default class Connection {
 
 	@autobind
 	private async onNoteStreamMessage(data: PubSubMessage<NoteStreamBody>) {
+		const payload = structuredClone(data.body?.body);	// JSON経てるから安全にクローンできる
+
+		// 購読者以外の投票者IDは隠す
+		if (data.type === 'pollVoted') {
+			if (!oidEquals(payload?.userId, this.user?._id)) payload.userId = 'hidden';
+		}
+
 		this.sendMessageToWs('noteUpdated', {
 			id: data.body!.id,
 			type: data.type,
-			body: data.body!.body,
+			body: payload,
 		});
 	}
 
